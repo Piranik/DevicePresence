@@ -55,7 +55,7 @@ class ScannerCommand extends Command
                 sprintf(
                     '<info>%s: Found %u online devices</info> (used memory: %01.2fMB)',
                     strftime('%F %T'),
-                    count($scanner->scan()),
+                    count($scanner->scanUsingNmap()),
                     memory_get_usage(true)/1048576
                 )
             );

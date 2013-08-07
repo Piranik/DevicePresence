@@ -12,22 +12,23 @@ Installation
 
 1. Clone/download this repo and install the dependencies using composer
 
-    php composer.phar install
+    ```php composer.phar install```
 
-2. Make sure you've fping installed
+2. Make sure you've fping or nmap installed
 
-    apt-get install fping
+    ```apt-get install fping```
+    ```apt-get install nmap```
 
 3. Copy config/app/config.yml-dist to config/app/config.yml
 4. If you want to lookup the vendor, get the API key from http://www.macvendorlookup.com/api. Fill in your e-mail address and choose JSON as output format.
 5. Change the network and interval of the scan to your needs.
 6. Let Doctrine create the database:
 
-    php vendor/bin/doctrine orm:schema-tool:create
+    ```php vendor/bin/doctrine orm:schema-tool:create```
 
 7. Run the scanner:
 
-    php cli/command.php scanner
+    ```php cli/command.php scanner```
 
 
 W.I.P
