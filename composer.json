@@ -7,6 +7,9 @@
     "require": {
         "silex/silex": "1.0.*@dev",
         "symfony/process": "*",
-        "symfony/console": "~2.3"
+        "symfony/console": "~2.3",
+        "kherge/entities": "1.0.*@dev",
+        "igorw/config-service-provider": "v1.2.1",
+        "symfony/yaml": "~2.3"
     }
 }

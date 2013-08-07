@@ -1,0 +1,22 @@
+App\Entity\DeviceLog:
+  type: entity
+  table: devicelog
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: IDENTITY
+    date:
+      type: datetime
+      nullable: true
+    ip:
+      type: string
+      length: 50
+      nullable: true
+  manyToOne:
+    device:
+      targetEntity: App\Entity\Device
+      joinColumn:
+        referencedColumnName: id
+        onDelete: "cascade"

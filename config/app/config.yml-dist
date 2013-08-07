@@ -1,0 +1,32 @@
+##
+# Copy this file to config.yml and modify before use
+##
+
+# App debug
+debug: false
+
+scan.options:
+    # Network to scan
+    network: "192.168.0.0/24"
+
+    # Scan interval in seconds
+    interval: 120
+
+    # API key for http://www.macvendorlookup.com (free)
+    macAddressApiKey: ""
+
+# Database configuration
+db.options:
+    driver: "pdo_sqlite"
+    dbname: "devices"
+    path: "/tmp/device.db"
+
+# Entity Manager Configuration
+em.options:
+    mapping_driver: "YamlDriver"
+    mapping_paths: ["%root_path%/config/mappings"]
+    proxy_auto_generate: true
+    proxy_dir: "%root_path%/var/proxy"
+    proxy_namespace: "DoctrineProxy"
+
+

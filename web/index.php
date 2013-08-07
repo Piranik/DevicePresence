@@ -1,31 +1,12 @@
 <?php
-require_once __DIR__.'/../vendor/autoload.php';
-
-$app = new Silex\Application();
-$app['debug'] = true;
+$app = require_once __DIR__ . '/../src/bootstrap.php';
 
 $app->get(
     '/',
     function () use ($app) {
-        $scanner = new \App\Scan();
-        return '<pre>' . print_r($scanner->scan(), true);
+        $scanner = new \App\Scan($app['em'], $app['scan.options']);
+        return sprintf('Found %u online devices', count($scanner->scan()));
     }
 );
-
-// $app->get(
-    // '/switch/{id}/{state}',
-    // function ($id, $state) use ($app) {
-        // $ls = new \App\Send\LightSwitch();
-//
-        // return sprintf(
-            // 'Switching unit %u in state %s: %s',
-            // $app->escape($id),
-            // $app->escape($state),
-            // $app->escape($ls->execute($id, $state))
-        // );
-    // }
-// )
-// ->assert('id', '\d+')
-// ->assert('state', '(on|off)');
 
 $app->run();

@@ -1,0 +1,30 @@
+App\Entity\Device:
+  type: entity
+  table: device
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: IDENTITY
+    macaddress:
+      type: string
+      length: 17
+      nullable: true
+    vendor:
+        type: string
+        length: 255
+        nullable: true
+    lastip:
+      type: string
+      length: 50
+      nullable: true
+    firstseen:
+      type: datetime
+      nullable: true
+    lastseen:
+      type: datetime
+      nullable: true
+    updated:
+      type: datetime
+      nullable: true

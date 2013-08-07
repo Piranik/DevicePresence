@@ -5,10 +5,21 @@ use Symfony\Component\Process\Process;
 use App\Scan\Tool\Fping\Mapper;
 use App\Scan\Host;
 
+/**
+ * Fping wrapper
+ *
+ * @author Tim de Pater <code@trafex.nl>
+ */
 class Fping
 {
     const PING_COMMAND = 'fping';
 
+    /**
+     * Ping a network
+     *
+     * @param string $network
+     * @return array
+     */
     public function pingNetwork($network)
     {
         $mapper = new Mapper();
@@ -24,11 +35,12 @@ class Fping
         return $results;
     }
 
-    public function scan()
-    {
-        $results = $this->runPing();
-    }
-
+    /**
+     * Run the ping command
+     *
+     * @param string $network
+     * @return string
+     */
     private function runPing($network)
     {
         $cmd = sprintf(
@@ -42,9 +54,6 @@ class Fping
         if ($process->getExitCode() > 1) {
             throw new \RuntimeException($process->getErrorOutput());
         }
-        // @todo: fping -c 1 -g 192.168.20.0/24 && arp -n | grep -i
-        // "00:15:AD:FF:81:93"
         return $process->getOutput();
     }
-
 }
