@@ -1,0 +1,12 @@
+{
+    "autoload": {
+        "psr-0": {
+            "App": "src/"
+        }
+    },
+    "require": {
+        "silex/silex": "1.0.*@dev",
+        "symfony/process": "*",
+        "symfony/console": "~2.3"
+    }
+}
