@@ -36,7 +36,8 @@ W.I.P
 
 Currently, saving the devices to a SQLite DB is all this app does.
 
-A webinterface is on the todo list.
+There's also a experimental graph showing all devices in a timeline.
+See: http://<devicepresence>/graph
 
 
 TODO

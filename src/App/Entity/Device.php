@@ -187,4 +187,49 @@ class Device
     {
         return $this->vendor;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $devicelog;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->devicelog = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add devicelog
+     *
+     * @param \App\Entity\DeviceLog $devicelog
+     * @return Device
+     */
+    public function addDevicelog(\App\Entity\DeviceLog $devicelog)
+    {
+        $this->devicelog[] = $devicelog;
+    
+        return $this;
+    }
+
+    /**
+     * Remove devicelog
+     *
+     * @param \App\Entity\DeviceLog $devicelog
+     */
+    public function removeDevicelog(\App\Entity\DeviceLog $devicelog)
+    {
+        $this->devicelog->removeElement($devicelog);
+    }
+
+    /**
+     * Get devicelog
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDevicelog()
+    {
+        return $this->devicelog;
+    }
 }

@@ -28,3 +28,10 @@ App\Entity\Device:
     updated:
       type: datetime
       nullable: true
+  oneToMany:
+    devicelog:
+      targetEntity: App\Entity\DeviceLog
+      mappedBy: device
+      orderBy:
+        id: asc
+

@@ -1,0 +1,31 @@
+{% extends 'layout/html.twig' %}
+{% block main_content %}
+<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['timeline']}]}"></script>
+<script type="text/javascript">
+google.setOnLoadCallback(drawChart);
+
+function drawChart() {
+  var container = document.getElementById('example1');
+
+  var chart = new google.visualization.Timeline(container);
+
+  var dataTable = new google.visualization.DataTable();
+
+  dataTable.addColumn({ type: 'string', id: 'Device' });
+  dataTable.addColumn({ type: 'date', id: 'Start' });
+  dataTable.addColumn({ type: 'date', id: 'End' });
+
+  dataTable.addRows([
+    {% autoescape false %}
+    {{rows}}
+    {% endautoescape %}
+  ]);
+  var options = {
+    timeline: { colorByRowLabel: true }
+  };
+  chart.draw(dataTable);
+}
+</script>
+<div id="example1" style="height: 800px;"></div>
+
+{% endblock %}

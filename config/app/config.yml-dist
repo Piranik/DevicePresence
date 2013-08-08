@@ -29,4 +29,12 @@ em.options:
     proxy_dir: "%root_path%/var/proxy"
     proxy_namespace: "DoctrineProxy"
 
+# Twig
+twig.config:
+    twig.path: "%root_path%/view/"
+    twig.options:
+        debug: false
+        cache: "%root_path%/var/twig"
+        auto_reload: false
+        strict_variables: true
 

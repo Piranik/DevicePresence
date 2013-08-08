@@ -7,5 +7,5 @@ $app->get(
         return 'Device Presence Webinterface (coming soon)';
     }
 );
-
+$app->mount('/graph', new \App\Controller\Graph());
 $app->run();

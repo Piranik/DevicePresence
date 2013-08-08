@@ -20,3 +20,5 @@ App\Entity\DeviceLog:
       joinColumn:
         referencedColumnName: id
         onDelete: "cascade"
+      orderBy:
+        id: asc
