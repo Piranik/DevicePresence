@@ -50,6 +50,7 @@ class Scan
     public function scanUsingNmap()
     {
         $tool = new Nmap();
+        $lookup = new MacAddress($this->config['macAddressApiKey']);
         $results = $tool->pingNetwork($this->config['network']);
         foreach ($results as $result) {
             $repo = $this->entityManager->getRepository('\App\Entity\Device');
@@ -63,7 +64,13 @@ class Scan
                 $device = new Device();
                 $device->setMacAddress($macAddress);
                 $device->setFirstSeen(new \DateTime('now'));
-                $device->setVendor($result->getVendor());
+
+                $vendor = $result->getVendor();
+                if (null === $vendor) {
+                    // Try to lookup
+                    $vendor = $lookup->getVendorForMacAddress($macAddress);
+                }
+                $device->setVendor($vendor);
             }
 
             $device->setLastIp($result->getIp());
