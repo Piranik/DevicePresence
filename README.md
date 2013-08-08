@@ -37,3 +37,12 @@ W.I.P
 Currently, saving the devices to a SQLite DB is all this app does.
 
 A webinterface is on the todo list.
+
+
+TODO
+----
+
+[ ] Add unit tests
+[ ] Make API to find out if the device is available atm
+[ ] Build webinterface (table of devices)
+[ ] Generate data/chart per device with available/offline times

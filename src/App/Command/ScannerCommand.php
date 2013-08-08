@@ -47,15 +47,15 @@ class ScannerCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $output = new Output($output);
         $output->writeLn('Starting scanner..');
 
-        $scanner = new \App\Scan($this->entityManager, $this->config);
+        $scanner = new \App\Scan($this->entityManager, $output, $this->config);
         while (true) {
             $output->writeLn(
                 sprintf(
-                    '<info>%s: Found %u online devices</info> (used memory: %01.2fMB)',
-                    strftime('%F %T'),
-                    count($scanner->scanUsingNmap()),
+                    '<info>Updated %u devices</info> (used memory: %01.2fMB)',
+                    $scanner->scanUsingNmap(),
                     memory_get_usage(true)/1048576
                 )
             );
