@@ -1,4 +1,6 @@
 {
+    "name": "trafex/devicepresence",
+    "description": "Device Presence scans the network and show the found devices in a timeline",
     "autoload": {
         "psr-0": {
             "App": "src/"
@@ -12,5 +14,12 @@
         "igorw/config-service-provider": "v1.2.1",
         "symfony/yaml": "~2.3",
         "twig/twig": ">=1.8,<2.0-dev"
-    }
+    },
+    "authors": [
+        {
+            "name": "Tim de Pater",
+            "email": "code@trafex.nl"
+        }
+    ],
+    "license": "GPL-3.0"
 }
