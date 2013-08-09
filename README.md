@@ -1,9 +1,9 @@
 Device Presence
 ===============
-This app scans the network every x seconds and saved every available device.
+This app scans the network (using Nmap) every x seconds and stores every available device in a database.
 The devices are recognized by their MAC address.
 
-The MAC address is lookup up in a free database to retrieve the vendor.
+The MAC address is looked up in a free database to retrieve the vendor.
 This makes it easy to see what kind of device it is.
 
 
@@ -14,9 +14,8 @@ Installation
 
     ```php composer.phar install```
 
-2. Make sure you've fping or nmap installed
+2. Make sure you've nmap installed
 
-    ```apt-get install fping```
     ```apt-get install nmap```
 
 3. Copy config/app/config.yml-dist to config/app/config.yml
@@ -26,7 +25,7 @@ Installation
 
     ```php vendor/bin/doctrine orm:schema-tool:create```
 
-7. Run the scanner:
+7. Run the scanner (as root, possible with sudo):
 
     ```php cli/command.php scanner```
 
@@ -37,13 +36,17 @@ W.I.P
 Currently, saving the devices to a SQLite DB is all this app does.
 
 There's also a experimental graph showing all devices in a timeline.
-See: http://<devicepresence>/graph
+To see it, run the internal webserver by executing:
+    ```./run.sh```
+    
+Then go to http://localhost:9999/graph
 
 
 TODO
 ----
 
-[ ] Add unit tests
-[ ] Make API to find out if the device is available atm
-[ ] Build webinterface (table of devices)
-[ ] Generate data/chart per device with available/offline times
+- [ ] Add unit testsg
+- [ ] Make API to find out if the device is available atm
+- [ ] Build webinterface (table of devices)
+- [ ] Generate data/chart per device with available/offline times
+- [ ] Use other database that can handle large amounts of data
