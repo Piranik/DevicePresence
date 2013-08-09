@@ -42,7 +42,7 @@ Installation
 
 8. You can use the builtin webserver from PHP5.4 to run the webinterface:
 
-    ```./run```
+    ``` ./run ```
 
 9. After the scanner has found the first results, you can see them at
 http://127.0.0.1:9999/graph
