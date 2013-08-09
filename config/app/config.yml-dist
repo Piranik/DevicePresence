@@ -15,7 +15,11 @@ scan.options:
     # API key for http://www.macvendorlookup.com (free)
     macAddressApiKey: ""
 
-# Database configuration
+timeline.options:
+    # If the device isn't seen this many seconds, it's treated as offline
+    offlineGap: 600
+
+# Database Configuration
 db.options:
     driver: "pdo_sqlite"
     dbname: "devices"
@@ -29,7 +33,7 @@ em.options:
     proxy_dir: "%root_path%/var/proxy"
     proxy_namespace: "DoctrineProxy"
 
-# Twig
+# Twig Configuration
 twig.config:
     twig.path: "%root_path%/view/"
     twig.options:

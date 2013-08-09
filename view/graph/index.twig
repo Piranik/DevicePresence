@@ -5,7 +5,7 @@
 google.setOnLoadCallback(drawChart);
 
 function drawChart() {
-  var container = document.getElementById('example1');
+  var container = document.getElementById('timeline');
 
   var chart = new google.visualization.Timeline(container);
 
@@ -23,9 +23,9 @@ function drawChart() {
   var options = {
     timeline: { colorByRowLabel: true }
   };
-  chart.draw(dataTable);
+  chart.draw(dataTable, options);
 }
 </script>
-<div id="example1" style="height: 800px;"></div>
+<div id="timeline"></div>
 
 {% endblock %}

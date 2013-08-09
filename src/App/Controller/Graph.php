@@ -20,11 +20,7 @@ class Graph implements ControllerProviderInterface
 
     public function indexAction()
     {
-        // @todo:
-        // https://google-developers.appspot.com/chart/interactive/docs/gallery/timeline
-
-        $graph = new GraphData($this->app['em']);
-
+        $graph = new GraphData($this->app['em'], $this->app['timeline.options']);
         $data = $graph->getData();
 
         $rows = '';
