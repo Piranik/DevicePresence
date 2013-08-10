@@ -1,5 +1,6 @@
 App\Entity\DeviceLog:
   type: entity
+  repositoryClass: App\Repository\DeviceLogRepository
   table: devicelog
   fields:
     id:

@@ -3,7 +3,8 @@ namespace App\Controller;
 
 use Silex\Application;
 use Silex\ControllerProviderInterface;
-use App\GraphData;
+use App\LogAggregator;
+
 
 class Graph implements ControllerProviderInterface
 {
@@ -14,14 +15,16 @@ class Graph implements ControllerProviderInterface
         $this->app = $app;
         $controllers = $app['controllers_factory'];
 
-        $controllers->get('/', array($this, 'indexAction'));
+        $controllers->get('/{date}', array($this, 'indexAction'))->value('date', 'now');
         return $controllers;
     }
 
-    public function indexAction()
+    public function indexAction($date)
     {
-        $graph = new GraphData($this->app['em'], $this->app['timeline.options']);
-        $data = $graph->getData();
+        $date = new \DateTime($date);
+        $deviceLogs = $this->app['em']->getRepository('\App\Entity\DeviceLog')->findByDay($date);
+        $aggregator = new LogAggregator();
+        $data = $aggregator->aggregate($deviceLogs, $this->app['timeline.options']['offlineGap']);
 
         $rows = '';
         foreach ($data as $device) {
