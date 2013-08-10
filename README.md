@@ -1,10 +1,13 @@
 Device Presence
 ===============
-This app scans the network (using Nmap) every x seconds and stores every available device in a database.
-The devices are recognized by their MAC address.
+This app scans the network every x minutes and records every available device by it's MAC address.
+This information is stored in a database and plotted on a timeline.
 
-The MAC address is looked up in a free database to retrieve the vendor.
-This makes it easy to see what kind of device it is.
+This is especially interesting for mobile devices, it shows you when the devices was online, thus within the WiFi range.
+Devices are recognized by their MAC address, so even if you use a DHCP server with short lease times, it always knows which IP belongs to the device.
+
+Scanning is done by Nmap. Nmap knows the vendor of most MAC addresses, but the app is connected to the MACVendorLookup API with a more up to date vendor database.
+This way it’s easy to know what kind of device it is.
 
 [![Build Status](https://travis-ci.org/TrafeX/DevicePresence.png?branch=master)](https://travis-ci.org/TrafeX/DevicePresence)
 
@@ -56,7 +59,7 @@ Currently, this app is being developed.
 There's still a lot todo:
 
 
-- [ ] Add unit tests
+- [/] Add unit tests
 - [ ] Make API to find out if the device is available atm
 - [X] Generate data/chart per device with available/offline times
 - [ ] Show table with all devices
