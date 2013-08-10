@@ -11,13 +11,19 @@ class Program
      * Run the nmap command
      *
      * @param string $network
+     * @param string $interface
      * @return string
      */
-    public function nmap($network)
+    public function nmap($network, $interface = null)
     {
+        $interfaceOption = null;
+        if (null !== $interface) {
+            $interfaceOption = '-e ' . $interface;
+        }
         $cmd = sprintf(
-            '%s -oX - -sn %s',
+            '%s %s -oX - -sn %s',
             self::COMMAND,
+            $interfaceOption,
             $network
         );
         $process = new Process($cmd);

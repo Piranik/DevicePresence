@@ -61,7 +61,7 @@ class Scan
     {
         $tool = new Nmap();
         $lookup = new MacAddress($this->config['macAddressApiKey']);
-        $results = $tool->pingNetwork($this->config['network']);
+        $results = $tool->pingNetwork($this->config['network'], $this->config['interface']);
         $this->output->writeLn(sprintf('Found %u online devices', count($results)));
 
         $updatedCnt = 0;

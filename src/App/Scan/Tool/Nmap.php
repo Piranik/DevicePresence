@@ -23,11 +23,12 @@ class Nmap
      * Ping a network
      *
      * @param string $network
+     * @param string $interface
      * @return array
      */
-    public function pingNetwork($network)
+    public function pingNetwork($network, $interface = null)
     {
-        $result = $this->getProgram()->nmap($network);
+        $result = $this->getProgram()->nmap($network, $interface);
         $xpath = $this->getXpath($result);
 
         $mapper = new Mapper();
