@@ -55,9 +55,10 @@ Currently, this app is being developed.
 There's still a lot todo:
 
 
-- [ ] Add unit testsg
+- [ ] Add unit tests
 - [ ] Make API to find out if the device is available atm
 - [X] Generate data/chart per device with available/offline times
 - [ ] Show table with all devices
 - [ ] Use other database that can handle large amounts of data
 - [ ] Aggregate the results of devicelogs to timeblocks and cleanup devicelogs
+- [ ] Use Phing or Make to install

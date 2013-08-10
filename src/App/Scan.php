@@ -104,47 +104,4 @@ class Scan
         }
         return $updatedCnt;
     }
-
-    /**
-     * Scan with fping and save the results
-     *
-     * @return array
-     */
-    public function scanUsingFping()
-    {
-        $arp = new Arp();
-        $lookup = new MacAddress($this->config['macAddressApiKey']);
-        $tool = new Fping();
-        $results = $tool->pingNetwork($this->config['network']);
-        foreach ($results as $result) {
-            $repo = $this->entityManager->getRepository('\App\Entity\Device');
-            $macAddress = $arp->getMacAddressForIp($result->getIp());
-            if (null === $macAddress) {
-                // Skip
-                continue;
-            }
-            $device = $repo->findOneBy(array('macaddress' => $macAddress));
-            if (null === $device) {
-                $device = new Device();
-                $device->setMacAddress($macAddress);
-                $device->setFirstSeen(new \DateTime('now'));
-                $device->setVendor($lookup->getVendorForMacAddress($macAddress));
-            }
-
-            $device->setLastIp($result->getIp());
-            $device->setLastSeen(new \DateTime('now'));
-            $device->setUpdated(new \DateTime('now'));
-            $this->entityManager->persist($device);
-
-            $deviceLog = new DeviceLog();
-            $deviceLog->setIp($result->getIp());
-            $deviceLog->setDate(new \DateTime('now'));
-            $deviceLog->setDevice($device);
-            $this->entityManager->persist($deviceLog);
-
-            $this->entityManager->flush();
-            $this->entityManager->clear();
-        }
-        return $results;
-    }
 }

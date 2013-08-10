@@ -57,6 +57,12 @@ class Nmap
         return $process->getOutput();
     }
 
+    /**
+     * Get a \DOMXpath object for the XML
+     *
+     * @param string $xml
+     * @return \DOMXpath
+     */
     private function getXpath($xml)
     {
         $domDoc = new \DOMDocument();

@@ -70,6 +70,10 @@ class GraphData
             }
             $lastDate = $deviceLog->getDate();
         }
+        if (!isset($results[$curDevice][$i]['end'])) {
+            $results[$curDevice][$i]['end'] = $lastDate;
+        }
+
         return $results;
     }
 }

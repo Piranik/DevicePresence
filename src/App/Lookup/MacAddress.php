@@ -39,12 +39,28 @@ class MacAddress
             // Usage of the API is disabled
             return null;
         }
-        $response = file_get_contents(
-            sprintf('%s/api/%s/%s', self::APIHOST, $this->apiKey, $macAddress)
-        );
-        if (null === $response || !is_array(json_decode($response))) {
+        $response = $this->fetchFromApi($macAddress);
+        if (!$response || !is_array(json_decode($response))) {
             return null;
         }
         return current(json_decode($response))->company;
+    }
+
+    /**
+     * Fetch the API data for the given MAC address
+     *
+     * @param string $macAddress
+     * @return string|false
+     */
+    public function fetchFromApi($macAddress)
+    {
+        return file_get_contents(
+            sprintf(
+                '%s/api/%s/%s',
+                self::APIHOST,
+                $this->apiKey,
+                $macAddress
+            )
+        );
     }
 }
