@@ -37,12 +37,12 @@ class LogAggregator
                 $i = 0;
                 $results[$curDevice][$i] = array();
                 $results[$curDevice][$i]['start'] = $deviceLog->getDate();
+                $results[$curDevice][$i]['device'] = sprintf(
+                    '%s (%s)',
+                    $deviceLog->getDevice()->getMacAddress(),
+                    $deviceLog->getDevice()->getVendor()
+                );
             }
-            $results[$curDevice][$i]['device'] = sprintf(
-                '%s (%s)',
-                $deviceLog->getDevice()->getMacAddress(),
-                $deviceLog->getDevice()->getVendor()
-            );
 
             $timeDiff = strtotime($deviceLog->getDate()->format('Y-m-d H:i:s'))
                 - strtotime($lastDate->format('Y-m-d H:i:s'));
@@ -52,6 +52,11 @@ class LogAggregator
                 // This time block is ended, increase $i to start a new one
                 $i++;
                 $results[$curDevice][$i]['start'] = $deviceLog->getDate();
+                $results[$curDevice][$i]['device'] = sprintf(
+                    '%s (%s)',
+                    $deviceLog->getDevice()->getMacAddress(),
+                    $deviceLog->getDevice()->getVendor()
+                );
             }
             $lastDate = $deviceLog->getDate();
         }

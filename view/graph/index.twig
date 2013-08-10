@@ -17,7 +17,11 @@ function drawChart() {
 
   dataTable.addRows([
     {% autoescape false %}
-    {{rows}}
+    {% for device in rows %}
+        {% for row in device %}
+            [ '{{row.device}}', new Date({{row.start|date("Y, n, j, H, i, s") }}), new Date({{row.end|date("Y, n, j, H, i, s") }}) ],
+        {% endfor %}
+    {% endfor %}
     {% endautoescape %}
   ]);
   var options = {
