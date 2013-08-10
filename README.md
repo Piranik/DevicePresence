@@ -6,8 +6,9 @@ The devices are recognized by their MAC address.
 The MAC address is looked up in a free database to retrieve the vendor.
 This makes it easy to see what kind of device it is.
 
-![Device Presence](http://www.trafex.nl/wp-content/uploads/2013/08/devicepresence.png "Device Presence screenshot")
+[![Build Status](https://travis-ci.org/TrafeX/DevicePresence.png?branch=master)](https://travis-ci.org/TrafeX/DevicePresence)
 
+![Device Presence](http://www.trafex.nl/wp-content/uploads/2013/08/devicepresence.png "Device Presence screenshot")
 Requirements
 ------------
 

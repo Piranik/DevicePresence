@@ -1,18 +1,23 @@
 <?php
 namespace App\Scan\Tool;
 
-use Symfony\Component\Process\Process;
 use App\Scan\Host;
 use App\Scan\Tool\Nmap\Mapper;
+use App\Scan\Tool\Nmap\Program;
 
 /**
- * Fping wrapper
+ * Nmap wrapper
  *
  * @author Tim de Pater <code@trafex.nl>
  */
 class Nmap
 {
-    const COMMAND = 'nmap';
+    /**
+     * Program
+     *
+     * @var Program;
+     */
+    private $program;
 
     /**
      * Ping a network
@@ -22,10 +27,10 @@ class Nmap
      */
     public function pingNetwork($network)
     {
-        $mapper = new Mapper();
-        $result = $this->runNmap($network);
+        $result = $this->getProgram()->nmap($network);
         $xpath = $this->getXpath($result);
 
+        $mapper = new Mapper();
         $results = array();
         $hosts = $xpath->query('//host');
         foreach ($hosts as $host) {
@@ -35,27 +40,6 @@ class Nmap
         return $results;
     }
 
-    /**
-     * Run the nmap command
-     *
-     * @param string $network
-     * @return string
-     */
-    private function runNmap($network)
-    {
-        $cmd = sprintf(
-            '%s -oX - -sn %s',
-            self::COMMAND,
-            $network
-        );
-        $process = new Process($cmd);
-        $process->run();
-
-        if ($process->getExitCode() > 1) {
-            throw new \RuntimeException($process->getErrorOutput());
-        }
-        return $process->getOutput();
-    }
 
     /**
      * Get a \DOMXpath object for the XML
@@ -69,10 +53,32 @@ class Nmap
         $dom = $domDoc->loadXML($xml);
         if (false === $dom) {
             new \RuntimeException(
-                sprintf('Couldn\'t load the XML from nmap: %s', $input)
+                sprintf('Couldn\'t load the XML from nmap: %s', $xml)
             );
         }
         return new \DOMXpath($domDoc);
     }
-}
 
+    /**
+     * Get program.
+     *
+     * @return Program
+     */
+    public function getProgram()
+    {
+        if (null === $this->program) {
+            $this->program = new Program();
+        }
+        return $this->program;
+    }
+
+    /**
+     * Set program.
+     *
+     * @param Program $program
+     */
+    public function setProgram(Program $program)
+    {
+        $this->program = $program;
+    }
+}

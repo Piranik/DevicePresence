@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 6.00 scan initiated Sat Aug 10 00:00:15 2013 as: nmap -oX - -sn 192.168.150.0/24 -->
+<nmaprun scanner="nmap" args="nmap -oX - -sn 192.168.150.0/24" start="1376140875" startstr="Sat Aug 10 00:00:15 2013" version="6.00" xmloutputversion="1.04">
+<verbose level="0"/>
+<debugging level="0"/>
+<host><status state="up" reason="arp-response"/>
+<address addr="192.168.150.1" addrtype="ipv4"/>
+<address addr="00:00:00:00:00:78" addrtype="mac" vendor="Cisco-Linksys"/>
+<hostnames>
+</hostnames>
+<times srtt="11696" rttvar="11696" to="100000"/>
+</host>
+<host><status state="up" reason="localhost-response"/>
+<address addr="192.168.150.21" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</host>
+<host><status state="up" reason="arp-response"/>
+<address addr="192.168.150.42" addrtype="ipv4"/>
+<address addr="00:00:00:00:00:83" addrtype="mac" vendor="Raspberry Pi Foundation"/>
+<hostnames>
+</hostnames>
+<times srtt="5657" rttvar="4277" to="100000"/>
+</host>
+<runstats><finished time="1376140910" timestr="Sat Aug 10 00:00:50 2013" elapsed="34.40" summary="Nmap done at Sat Aug 10 00:00:50 2013; 256 IP addresses (3 hosts up) scanned in 34.40 seconds" exit="success"/><hosts up="3" down="253" total="256"/>
+</runstats>
+</nmaprun>
