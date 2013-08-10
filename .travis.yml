@@ -5,6 +5,7 @@ php:
 
 before_install:
 - composer install --dev
+- cp config/app/config.yml-dist config/app/config.yml
 
 script:
 - vendor/bin/phpunit -c tests/phpunit.xml --coverage-text
