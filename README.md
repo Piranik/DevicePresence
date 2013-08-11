@@ -35,7 +35,7 @@ I've created a Vagrant box that automatically starts scanning the network when y
 
     ```php composer.phar install```
 
-2. Run
+2. Start the box. For scanning it needs to have a bridged interface:
     ```vagrant up```
 
 3. The scanner and webinterface will be started by [supervisor](http://supervisord.org/).

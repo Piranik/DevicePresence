@@ -35,6 +35,7 @@ service { 'supervisor':
 
 exec { 'create-db':
   command => 'php /vagrant/vendor/bin/doctrine orm:schema-tool:create',
+  cwd => '/vagrant',
   unless => 'test -e /vagrant/device.db',
-  require => Package['php5-cli'],
+  require => [ Package['php5-cli'], File['config.yml'] ]
 }
