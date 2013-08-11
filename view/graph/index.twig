@@ -12,6 +12,7 @@ function drawChart() {
   var dataTable = new google.visualization.DataTable();
 
   dataTable.addColumn({ type: 'string', id: 'Device' });
+  dataTable.addColumn({ type: 'string', id: 'IP' });
   dataTable.addColumn({ type: 'date', id: 'Start' });
   dataTable.addColumn({ type: 'date', id: 'End' });
 
@@ -19,7 +20,7 @@ function drawChart() {
     {% autoescape false %}
     {% for device in rows %}
         {% for row in device %}
-            [ '{{row.device}}', new Date({{row.start|date("Y, n, j, H, i, s") }}), new Date({{row.end|date("Y, n, j, H, i, s") }}) ],
+            [ '{{row.device}}', '{{row.ip}}',  new Date({{row.start|date("Y, n, j, H, i, s") }}), new Date({{row.end|date("Y, n, j, H, i, s") }}) ],
         {% endfor %}
     {% endfor %}
     {% endautoescape %}

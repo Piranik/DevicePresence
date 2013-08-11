@@ -37,6 +37,7 @@ class LogAggregator
                 $i = 0;
                 $results[$curDevice][$i] = array();
                 $results[$curDevice][$i]['start'] = $deviceLog->getDate();
+                $results[$curDevice][$i]['ip'] = $deviceLog->getIp();
                 $results[$curDevice][$i]['device'] = sprintf(
                     '%s (%s)',
                     $deviceLog->getDevice()->getMacAddress(),
@@ -57,6 +58,7 @@ class LogAggregator
                     $deviceLog->getDevice()->getMacAddress(),
                     $deviceLog->getDevice()->getVendor()
                 );
+                $results[$curDevice][$i]['ip'] = $deviceLog->getIp();
             }
             $lastDate = $deviceLog->getDate();
         }

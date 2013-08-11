@@ -10,7 +10,7 @@ App\Entity\Device:
     macaddress:
       type: string
       length: 17
-      nullable: true
+      nullable: false
     vendor:
         type: string
         length: 255

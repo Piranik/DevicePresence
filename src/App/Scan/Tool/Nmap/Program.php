@@ -3,6 +3,11 @@ namespace App\Scan\Tool\Nmap;
 
 use Symfony\Component\Process\Process;
 
+/**
+ * Nmap program
+ *
+ * @author Tim de Pater <code@trafex.nl>
+ */
 class Program
 {
     const COMMAND = 'nmap';

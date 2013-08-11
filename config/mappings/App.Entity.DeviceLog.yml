@@ -10,11 +10,11 @@ App\Entity\DeviceLog:
         strategy: IDENTITY
     date:
       type: datetime
-      nullable: true
+      nullable: false
     ip:
       type: string
       length: 50
-      nullable: true
+      nullable: false
   manyToOne:
     device:
       targetEntity: App\Entity\Device
