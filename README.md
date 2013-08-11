@@ -12,6 +12,7 @@ This way it’s easy to know what kind of device it is.
 [![Build Status](https://travis-ci.org/TrafeX/DevicePresence.png?branch=master)](https://travis-ci.org/TrafeX/DevicePresence)
 
 ![Device Presence](http://www.trafex.nl/wp-content/uploads/2013/08/devicepresence.png "Device Presence screenshot")
+
 Requirements
 ------------
 
@@ -21,9 +22,31 @@ Requirements
 - SQLite 3.x
 - PDO SQLlite PHP extension
 
+or if you want to use the Vagrant box:
 
-Installation
-------------
+- VirtualBox 4.1 or 4.2
+- Vagrant 1.2
+
+Installation using Vagrant
+-------------------------
+I've created a Vagrant box that automatically starts scanning the network when you start it.
+
+1. Clone/download this repo and install the dependencies using composer
+
+    ```php composer.phar install```
+
+2. Run
+    ```vagrant up```
+
+3. The scanner and webinterface will be started by [supervisor](http://supervisord.org/).
+4. After a few minutes you should see the scan results on http://127.0.0.1:9999
+
+5. Check the following logs for any issues:
+    ```sudo tail -f /var/log/supervisor/*```
+
+
+Installation on your own server
+----------------------------
 
 1. Clone/download this repo and install the dependencies using composer
 

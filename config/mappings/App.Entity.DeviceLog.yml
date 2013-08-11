@@ -2,6 +2,9 @@ App\Entity\DeviceLog:
   type: entity
   repositoryClass: App\Repository\DeviceLogRepository
   table: devicelog
+  indexes:
+    date_index:
+        columns: [ date ]
   fields:
     id:
       id: true
