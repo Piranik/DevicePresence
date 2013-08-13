@@ -101,3 +101,5 @@ There's still a lot todo:
 - [ ] Use other database that can handle large amounts of data
 - [ ] Aggregate the results of devicelogs to timeblocks and cleanup devicelogs
 - [ ] Use Phing or Make to install
+- [ ] Handle state when the're no devicelogs yet
+- [ ] Add datepicker for timeline graph
