@@ -36,12 +36,24 @@ I've created a Vagrant box that automatically starts scanning the network when y
     ```php composer.phar install```
 
 2. Start the box. For scanning it needs to have a bridged interface:
+
     ```vagrant up```
 
-3. The scanner and webinterface will be started by [supervisor](http://supervisord.org/).
-4. After a few minutes you should see the scan results on http://127.0.0.1:9999
+3. The default timezone is UTC, if you want to change this, run these commands:
 
-5. Check the following logs for any issues:
+    ```vagrant ssh``` (SSH into the Vagrantbox)
+    
+    ```sudo dpkg-reconfigure tzdata``` (change the timezone)
+    
+    ```exit``` (leave the Vagrantbox)
+    
+    ```vagrant reload``` (restart the Vagrantbox to make sure the new timezone is used)
+    
+
+4. The scanner and webinterface will be started by [supervisor](http://supervisord.org/).
+5. After a few minutes you should see the scan results on http://127.0.0.1:9999
+
+6. Check the following logs for any issues:
     ```sudo tail -f /var/log/supervisor/*```
 
 
