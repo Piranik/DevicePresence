@@ -30,7 +30,8 @@ file { 'web.conf':
 }
 
 service { 'supervisor':
-  ensure => 'running'
+  ensure => 'running',
+  require => Exec['create-db'],
 }
 
 exec { 'create-db':
