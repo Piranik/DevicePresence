@@ -103,3 +103,7 @@ There's still a lot todo:
 - [ ] Use Phing or Make to install
 - [ ] Handle state when the're no devicelogs yet
 - [ ] Add datepicker for timeline graph
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/TrafeX/devicepresence/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
