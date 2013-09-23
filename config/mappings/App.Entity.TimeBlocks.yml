@@ -1,0 +1,26 @@
+App\Entity\TimeBlocks:
+  type: entity
+  repositoryClass: App\Repository\TimeBlocksRepository
+  table: timeblocks
+  fields:
+    id:
+      id: true
+      type: integer
+      generator:
+        strategy: IDENTITY
+    start:
+      type: datetime
+      nullable: false
+    end:
+      type: datetime
+      nullable: false
+    ip:
+      type: string
+      length: 50
+      nullable: false
+  manyToOne:
+    device:
+      targetEntity: App\Entity\Device
+      joinColumn:
+        referencedColumnName: id
+        onDelete: "cascade"

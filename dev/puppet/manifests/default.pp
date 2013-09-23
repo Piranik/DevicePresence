@@ -40,3 +40,9 @@ exec { 'create-db':
   unless => 'test -e /vagrant/device.db',
   require => [ Package['php5-cli'], File['config.yml'] ]
 }
+
+# We need to restart the supervisor because it starts before the vbox mounts are done
+exec { 'supervisorctl-restart':
+  command => 'supervisorctl restart all',
+  require => Service['supervisor']
+}

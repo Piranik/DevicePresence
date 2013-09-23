@@ -9,6 +9,8 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Exception\RuntimeException;
 use App\Scan;
+use App\Aggregation\TimeBlocks;
+use Silex\Application;
 
 /**
  * Start the scanner
@@ -20,10 +22,12 @@ class ScannerCommand extends Command
 {
     private $config;
     private $entityManager;
+    private $elasticSearch;
 
-    public function __construct(EntityManager $em, array $config)
+    public function __construct(Application $app, array $config)
     {
-        $this->entityManager = $em;
+        $this->entityManager = $app['em'];
+        $this->elasticSearch = $app['es'];
         $this->config = $config;
 
         parent::__construct();
@@ -58,6 +62,7 @@ class ScannerCommand extends Command
         while (true) {
             try {
                 $this->scan($scanner, $output);
+                $this->aggregateToTimeBlocks($output);
                 $failureLimiter->successfull();
 
             } catch (RuntimeException $e) {
@@ -102,5 +107,17 @@ class ScannerCommand extends Command
                 memory_get_usage(true)/1048576
             )
         );
+    }
+
+    private function aggregateToTimeBlocks(OutputInterface $output)
+    {
+        // @todo: Looks likes this is causing a little memory leak
+        $timeblocks = new TimeBlocks($this->entityManager, $this->elasticSearch);
+        $count = $timeblocks->aggregateToTimeBlocks($this->config['offlineGap']);
+
+        $output->writeLn(
+            sprintf('Aggregated rows to %u timeblocks', $count)
+        );
+        return $count;
     }
 }

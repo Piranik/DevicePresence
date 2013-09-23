@@ -9,4 +9,13 @@ $app->register(new Igorw\Silex\ConfigServiceProvider(
 $app->register(new KevinGH\Entities\EntitiesServiceProvider());
 $app->register(new Silex\Provider\TwigServiceProvider(), $app['twig.config']);
 
+$app['es'] = $app->share(function () {
+    return new \Elastica\Client(
+            array(
+                'host' => '127.0.0.1',
+                'port' => 9200,
+            )
+        );
+});
+
 return $app;
