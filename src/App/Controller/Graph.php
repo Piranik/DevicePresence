@@ -15,12 +15,12 @@ class Graph implements ControllerProviderInterface
         $this->app = $app;
         $controllers = $app['controllers_factory'];
 
-        $controllers->get('/{date}', array($this, 'indexAction'))->value('date', 'now');
-        $controllers->get('/search/{date}', array($this, 'searchAction'))->value('date', 'now');
+        $controllers->get('/{date}', array($this, 'indexAction'))->value('date', date('Y-m-d'));
+        $controllers->get('/old/{date}', array($this, 'oldAction'))->value('date', 'now');
         return $controllers;
     }
 
-    public function indexAction($date)
+    public function oldAction($date)
     {
         $date = new \DateTime($date);
         $deviceLogs = $this->app['em']->getRepository('\App\Entity\DeviceLog')->findByDay($date);
@@ -35,7 +35,7 @@ class Graph implements ControllerProviderInterface
         );
     }
 
-    public function searchAction($date)
+    public function indexAction($date)
     {
         $date = new \DateTime($date);
         $enddate = clone $date;

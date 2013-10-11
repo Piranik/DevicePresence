@@ -1,0 +1,13 @@
+forge "http://forge.puppetlabs.com"
+
+mod "java",
+    :git => "git://github.com/example42/puppet-java.git"
+
+mod "git",
+    :git => "git://github.com/example42/puppet-git.git"
+
+mod "elasticsearch",
+    :git => "git://github.com/example42/puppet-elasticsearch.git"
+
+mod "timezone",
+    :git => "git://github.com/example42/puppet-timezone.git"

@@ -15,9 +15,13 @@ scan.options:
     # You can optional specify the ethernet interface (eth0, wlan0, etc) to use for scanning
     interface: "<%= interface %>"
 
-timeline.options:
     # If the device isn't seen this many seconds, it's treated as offline
     offlineGap: 600
+
+# Elasticsearch options
+elasticsearch.options:
+    host: "127.0.0.1"
+    port: 9200
 
 # Database configuration
 db.options:

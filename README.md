@@ -10,6 +10,8 @@ Scanning is done by Nmap. Nmap knows the vendor of most MAC addresses, but the a
 This way it’s easy to know what kind of device it is.
 
 [![Build Status](https://travis-ci.org/TrafeX/DevicePresence.png?branch=master)](https://travis-ci.org/TrafeX/DevicePresence)
+[![Coverage Status](https://coveralls.io/repos/TrafeX/DevicePresence/badge.png)](https://coveralls.io/r/TrafeX/DevicePresence)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/TrafeX/DevicePresence/badges/quality-score.png?s=67482909a4c50187a3e61b9d8fd9b1872a300105)](https://scrutinizer-ci.com/g/TrafeX/DevicePresence/)
 
 ![Device Presence](http://www.trafex.nl/wp-content/uploads/2013/08/devicepresence.png "Device Presence screenshot")
 
@@ -94,7 +96,7 @@ Currently, this app is being developed.
 There's still a lot todo:
 
 
-- [ ] Use ElasticSearch as storage
+- [/] Use ElasticSearch as storage
 - [/] Add unit tests
 - [ ] Make API to find out if the device is available atm
 - [X] Generate data/chart per device with available/offline times
@@ -103,3 +105,4 @@ There's still a lot todo:
 - [ ] Use Phing or Make to install
 - [ ] Handle state when the're no devicelogs yet
 - [ ] Add datepicker for timeline graph
+

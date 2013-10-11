@@ -1,0 +1,54 @@
+FORGE
+  remote: http://forge.puppetlabs.com
+  specs:
+    example42/firewall (2.1.2)
+      example42/iptables (>= 2.0.0)
+      example42/puppi (>= 2.0.0)
+    example42/iptables (2.1.1)
+      example42/puppi (>= 2.0.0)
+      ripienaar/concat (>= 0.0.1)
+    example42/monitor (2.0.1)
+      example42/puppi (>= 2.0.0)
+    example42/puppi (2.1.2)
+    ripienaar/concat (0.2.0)
+
+GIT
+  remote: git://github.com/example42/puppet-elasticsearch.git
+  ref: master
+  sha: 35f65e2434eccfe5acd6a5ea0b91a61a78a2476a
+  specs:
+    elasticsearch (2.0.13)
+      example42/firewall (>= 2.0.0)
+      example42/monitor (>= 2.0.0)
+      example42/puppi (>= 2.0.0)
+
+GIT
+  remote: git://github.com/example42/puppet-git.git
+  ref: master
+  sha: 3f36a44924ca37da7efb92b97836a74bb0bbc236
+  specs:
+    git (2.0.13)
+      example42/puppi (>= 2.0.0)
+
+GIT
+  remote: git://github.com/example42/puppet-java.git
+  ref: master
+  sha: 8dc81d2fd9933e7317613aaeafc14b2e9fcfa936
+  specs:
+    java (2.0.2)
+      example42/puppi (>= 2.0.0)
+
+GIT
+  remote: git://github.com/example42/puppet-timezone.git
+  ref: master
+  sha: e016e4d290d3985792bb9025636516b48c6e4d97
+  specs:
+    timezone (2.0.9)
+      example42/puppi (>= 2.0.0)
+
+DEPENDENCIES
+  elasticsearch (>= 0)
+  git (>= 0)
+  java (>= 0)
+  timezone (>= 0)
+

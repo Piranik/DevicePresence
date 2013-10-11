@@ -2,9 +2,15 @@ Exec {
     path => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ]
 }
 
-package { ['nmap', 'supervisor', 'php5', 'php5-cli', 'php5-sqlite'] :
+package { ['nmap', 'supervisor', 'php5', 'php5-cli', 'php5-sqlite', 'php5-curl'] :
   ensure => latest,
 }
+
+class { 'timezone':
+  timezone => 'Europe/Amsterdam',
+}
+
+class { 'elasticsearch': }
 
 $interface = "eth1"
 $ciddr = inline_template('<%= scope["::netmask_eth1"].split(".").map { |e| e.to_i.to_s(2).rjust(8, "0") }.join.count("1").to_s %>')
