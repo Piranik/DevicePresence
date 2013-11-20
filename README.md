@@ -103,6 +103,6 @@ There's still a lot todo:
 - [ ] Show table with all devices
 - [ ] Aggregate the results of devicelogs to timeblocks and cleanup devicelogs
 - [ ] Use Phing or Make to install
-- [ ] Handle state when the're no devicelogs yet
-- [ ] Add datepicker for timeline graph
+- [X] Handle state when the're no devicelogs yet
+- [X] Add datepicker for timeline graph
 

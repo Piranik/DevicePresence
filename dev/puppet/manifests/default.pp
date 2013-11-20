@@ -10,7 +10,9 @@ class { 'timezone':
   timezone => 'Europe/Amsterdam',
 }
 
-class { 'elasticsearch': }
+class { 'elasticsearch':
+  version => '0.90.5'
+}
 
 $interface = "eth1"
 $ciddr = inline_template('<%= scope["::netmask_eth1"].split(".").map { |e| e.to_i.to_s(2).rjust(8, "0") }.join.count("1").to_s %>')

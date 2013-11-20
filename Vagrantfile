@@ -6,6 +6,7 @@ Vagrant.configure("2") do |config|
     config.vm.box_url = 'http://puppet-vagrant-boxes.puppetlabs.com/debian-70rc1-x64-vbox4210.box'
 
     config.vm.provider :virtualbox do |vb|
+        vb.name = 'DevicePresence'
         # Pass custom arguments to VBoxManage before booting VM
         vb.customize [
             'modifyvm', :id,
