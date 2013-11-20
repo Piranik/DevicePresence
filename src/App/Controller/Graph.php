@@ -42,7 +42,6 @@ class Graph implements ControllerProviderInterface
         $enddate->add(new \DateInterval('P1D'));
 
         $elasticaIndex = $this->app['es']->getIndex('devices');
-        $elasticaType = $elasticaIndex->getType('timeblock');
 
         $rangeFilter = new \Elastica\Filter\Range();
         $rangeFilter->addField('start', array(
