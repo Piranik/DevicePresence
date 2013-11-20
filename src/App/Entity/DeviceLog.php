@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * DeviceLog
  */
@@ -33,7 +31,7 @@ class DeviceLog
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -49,14 +47,14 @@ class DeviceLog
     public function setDate($date)
     {
         $this->date = $date;
-    
+
         return $this;
     }
 
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -72,14 +70,14 @@ class DeviceLog
     public function setIp($ip)
     {
         $this->ip = $ip;
-    
+
         return $this;
     }
 
     /**
      * Get ip
      *
-     * @return string 
+     * @return string
      */
     public function getIp()
     {
@@ -95,14 +93,14 @@ class DeviceLog
     public function setDevice(\App\Entity\Device $device = null)
     {
         $this->device = $device;
-    
+
         return $this;
     }
 
     /**
      * Get device
      *
-     * @return \App\Entity\Device 
+     * @return \App\Entity\Device
      */
     public function getDevice()
     {

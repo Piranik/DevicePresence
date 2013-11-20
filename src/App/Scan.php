@@ -1,9 +1,7 @@
 <?php
 namespace App;
 
-use App\Scan\Tool\Fping;
 use App\Scan\Tool\Nmap;
-use App\Scan\Tool\Arp;
 use App\Lookup\MacAddress;
 use App\Entity\Device;
 use App\Entity\DeviceLog;

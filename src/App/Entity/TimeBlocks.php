@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * TimeBlocks
  */
@@ -38,7 +36,7 @@ class TimeBlocks
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -54,14 +52,14 @@ class TimeBlocks
     public function setStart($start)
     {
         $this->start = $start;
-    
+
         return $this;
     }
 
     /**
      * Get start
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getStart()
     {
@@ -77,14 +75,14 @@ class TimeBlocks
     public function setEnd($end)
     {
         $this->end = $end;
-    
+
         return $this;
     }
 
     /**
      * Get end
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getEnd()
     {
@@ -100,14 +98,14 @@ class TimeBlocks
     public function setIp($ip)
     {
         $this->ip = $ip;
-    
+
         return $this;
     }
 
     /**
      * Get ip
      *
-     * @return string 
+     * @return string
      */
     public function getIp()
     {
@@ -123,14 +121,14 @@ class TimeBlocks
     public function setDevice(\App\Entity\Device $device = null)
     {
         $this->device = $device;
-    
+
         return $this;
     }
 
     /**
      * Get device
      *
-     * @return \App\Entity\Device 
+     * @return \App\Entity\Device
      */
     public function getDevice()
     {
