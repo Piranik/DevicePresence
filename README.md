@@ -10,7 +10,7 @@ Scanning is done by Nmap. Nmap knows the vendor of most MAC addresses, but the a
 This way it’s easy to know what kind of device it is.
 
 [![Build Status](https://travis-ci.org/TrafeX/DevicePresence.png?branch=master)](https://travis-ci.org/TrafeX/DevicePresence)
-[![Coverage Status](https://coveralls.io/repos/TrafeX/DevicePresence/badge.png)](https://coveralls.io/r/TrafeX/DevicePresence)
+[![Code Coverage](https://scrutinizer-ci.com/g/TrafeX/DevicePresence/badges/coverage.png?s=f7b20390ea47d3c3af3c42f0d72a668ea14fbed8)](https://scrutinizer-ci.com/g/TrafeX/DevicePresence/)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/TrafeX/DevicePresence/badges/quality-score.png?s=67482909a4c50187a3e61b9d8fd9b1872a300105)](https://scrutinizer-ci.com/g/TrafeX/DevicePresence/)
 
 ![Device Presence](http://www.trafex.nl/wp-content/uploads/2013/08/devicepresence.png "Device Presence screenshot")
