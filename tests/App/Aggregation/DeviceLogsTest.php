@@ -1,7 +1,7 @@
 <?php
 namespace App\Aggregation;
 
-use App\LogAggregator;
+use App\Aggregation\DeviceLogs as LogAggregator;
 use App\Entity\Device;
 use App\Entity\DeviceLog;
 

@@ -2,7 +2,7 @@ Exec {
     path => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ]
 }
 
-package { ['nmap', 'supervisor', 'php5', 'php5-cli', 'php5-sqlite', 'php5-curl'] :
+package { ['nmap', 'supervisor', 'php5', 'php5-cli', 'php5-sqlite', 'php5-curl', 'php5-xdebug'] :
   ensure => latest,
 }
 
