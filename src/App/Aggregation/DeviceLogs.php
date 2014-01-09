@@ -71,4 +71,3 @@ class DeviceLogs
         return $results;
     }
 }
-

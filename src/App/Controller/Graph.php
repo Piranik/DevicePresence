@@ -5,11 +5,20 @@ use Silex\Application;
 use Silex\ControllerProviderInterface;
 use App\Aggregation\DeviceLogs as DeviceLogAggregator;
 
-
 class Graph implements ControllerProviderInterface
 {
+    /**
+     * Application
+     *
+     * @var Application
+     */
     private $app;
 
+    /**
+     * Define the routes this controller uses
+     *
+     * @param Application $app
+     */
     public function connect(Application $app)
     {
         $this->app = $app;
@@ -20,6 +29,12 @@ class Graph implements ControllerProviderInterface
         return $controllers;
     }
 
+    /**
+     * Old action to retrieve the loglines
+     *
+     * @deprecated Use indexAction
+     * @param string $date
+     */
     public function oldAction($date)
     {
         $date = new \DateTime($date);
@@ -35,6 +50,11 @@ class Graph implements ControllerProviderInterface
         );
     }
 
+    /**
+     * Retrieve the timeblock from ElasticSearch
+     *
+     * @param string $date
+     */
     public function indexAction($date)
     {
         $date = new \DateTime($date);
@@ -44,9 +64,12 @@ class Graph implements ControllerProviderInterface
         $elasticaIndex = $this->app['es']->getIndex('devices');
 
         $rangeFilter = new \Elastica\Filter\Range();
-        $rangeFilter->addField('start', array(
-            'from' => $date->format('c'),
-            'to' => $enddate->format('c'))
+        $rangeFilter->addField(
+            'start',
+            array(
+                'from' => $date->format('c'),
+                'to' => $enddate->format('c')
+            )
         );
 
         $dateFacet = new \Elastica\Facet\DateHistogram('dateFacet');

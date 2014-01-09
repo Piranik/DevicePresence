@@ -80,7 +80,7 @@ class ScannerCommand extends Command
             }
 
             if ($failureLimiter->reachedLimit()) {
-                throw new \RuntimeException('The process reached the maximum failure limit' , 0, $e);
+                throw new \RuntimeException('The process reached the maximum failure limit', 0, $e);
             }
             sleep($this->config['interval']);
         }
@@ -106,6 +106,12 @@ class ScannerCommand extends Command
         );
     }
 
+    /**
+     * Aggregate the devicelogs to timeblocks
+     *
+     * @param OutputInterface $output
+     * @return integer
+     */
     private function aggregateToTimeBlocks(OutputInterface $output)
     {
         // @todo: Looks likes this is causing a little memory leak

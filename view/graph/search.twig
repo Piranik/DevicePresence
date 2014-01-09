@@ -1,5 +1,6 @@
 {% extends 'layout/html.twig' %}
 {% block main_content %}
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['timeline']}]}"></script>
 <script type="text/javascript">
 google.setOnLoadCallback(drawChart);
@@ -28,11 +29,22 @@ function drawChart() {
   };
   chart.draw(dataTable, options);
 }
+
+window.onload = function() {
+    $("#dateselect").change(function() {
+        window.location = "/graph/" + $("#dateselect option:selected")[0].value
+    })
+}
+
 </script>
 <label for="dateselect">Choose date:</label>
-<select for="dateselect">
+<select id="dateselect">
 {% for date in dates %}
-<option value="{{date.date|date("Y-m-d")}}">{{date.date|date("Y-m-d")}} ({{date.count}})</option>
+    {% if app.request.get('date') == date.date|date("Y-m-d") %}
+        <option value="{{date.date|date("Y-m-d")}}" selected="selected">{{date.date|date("Y-m-d")}} ({{date.count}})</option>
+    {% else %}
+        <option value="{{date.date|date("Y-m-d")}}">{{date.date|date("Y-m-d")}} ({{date.count}})</option>
+    {% endif %}
 {% endfor %}
 </select>
 <br /><br />

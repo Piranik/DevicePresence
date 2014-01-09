@@ -1,5 +1,6 @@
 <?php
 namespace App\Aggregation;
+
 use Doctrine\ORM\EntityManager;
 use Elastica\Client;
 use App\Aggregation\DeviceLogs as DeviceLogAggregator;
@@ -15,13 +16,17 @@ class TimeBlocks
         $this->elasticsearch = $elasticsearch;
     }
 
+    /**
+     * Fetch all devicelogs of today and index them as timeblocks in
+     * elasticsearch
+     *
+     * @param integer $offlineGap
+     * @return integer
+     */
     public function aggregateToTimeBlocks($offlineGap)
     {
-        // @todo:
-        // Index everything per day
-        // Delete everything older then today?
+        // @todo: Delete everything older then today
 
-        // @todo: Change to now
         $now = new \DateTime('now');
         $deviceLogs = $this->em->getRepository('\App\Entity\DeviceLog')->findByDay($now);
         $aggregator = new DeviceLogAggregator();
