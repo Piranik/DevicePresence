@@ -6,6 +6,7 @@ Vagrant.configure("2") do |config|
     config.vm.box_url = 'http://puppet-vagrant-boxes.puppetlabs.com/debian-70rc1-x64-vbox4210.box'
 
     config.vm.provider :virtualbox do |vb|
+        vb.name = 'DevicePresence'
         # Pass custom arguments to VBoxManage before booting VM
         vb.customize [
             'modifyvm', :id,
@@ -21,9 +22,10 @@ Vagrant.configure("2") do |config|
 
         project_config.vm.synced_folder ".", "/vagrant"
 
-        project_config.vm.provision :shell, :inline => "sudo apt-get update"
+        project_config.vm.provision "shell", path: "dev/puppet/librarian-puppet.sh"
         project_config.vm.provision :puppet do |puppet|
             puppet.manifests_path = "dev/puppet/manifests"
+            puppet.module_path = "dev/puppet/modules"
             puppet.manifest_file = "default.pp"
             # For debugging
             #puppet.options = "--verbose --debug"

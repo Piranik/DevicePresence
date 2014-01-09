@@ -25,4 +25,12 @@ class DeviceLogRepository extends EntityRepository
         );
         return $query->getResult();
     }
+
+    public function findGroupByDate()
+    {
+        $query = $this->getEntityManager()->createQuery(
+            'select dl from \App\Entity\DeviceLog dl group by start'
+        );
+        return $query->getResult();
+    }
 }

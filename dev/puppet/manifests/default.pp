@@ -2,8 +2,16 @@ Exec {
     path => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ]
 }
 
-package { ['nmap', 'supervisor', 'php5', 'php5-cli', 'php5-sqlite'] :
+package { ['nmap', 'supervisor', 'php5', 'php5-cli', 'php5-sqlite', 'php5-curl'] :
   ensure => latest,
+}
+
+class { 'timezone':
+  timezone => 'Europe/Amsterdam',
+}
+
+class { 'elasticsearch':
+  version => '0.90.5'
 }
 
 $interface = "eth1"
@@ -39,4 +47,10 @@ exec { 'create-db':
   cwd => '/vagrant',
   unless => 'test -e /vagrant/device.db',
   require => [ Package['php5-cli'], File['config.yml'] ]
+}
+
+# We need to restart the supervisor because it starts before the vbox mounts are done
+exec { 'supervisorctl-restart':
+  command => 'supervisorctl restart all',
+  require => Service['supervisor']
 }

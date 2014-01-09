@@ -1,5 +1,5 @@
 <?php
-namespace App;
+namespace App\Aggregation;
 
 /**
  * DeviceLog Aggregator
@@ -8,7 +8,7 @@ namespace App;
  *
  * @author Tim de Pater <code@trafex.nl>
  */
-class LogAggregator
+class DeviceLogs
 {
     /**
      * Aggregate device logs
@@ -19,6 +19,9 @@ class LogAggregator
      */
     public function aggregate($deviceLogs, $offlineGap)
     {
+        if (0 === count($deviceLogs)) {
+            return array();
+        }
         $results = array();
         $lastDate = array();
         $curDevice = null;

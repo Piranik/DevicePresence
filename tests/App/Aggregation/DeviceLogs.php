@@ -1,11 +1,11 @@
 <?php
-namespace App;
+namespace App\Aggregation;
 
 use App\LogAggregator;
 use App\Entity\Device;
 use App\Entity\DeviceLog;
 
-class LogAggregatorTest extends \PHPUnit_Framework_TestCase
+class DeviceLogsTest extends \PHPUnit_Framework_TestCase
 {
     public function testOfflineGapDifference()
     {

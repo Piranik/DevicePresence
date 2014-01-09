@@ -3,9 +3,9 @@
 namespace App\Entity;
 
 /**
- * DeviceLog
+ * TimeBlocks
  */
-class DeviceLog
+class TimeBlocks
 {
     /**
      * @var integer
@@ -15,7 +15,12 @@ class DeviceLog
     /**
      * @var \DateTime
      */
-    private $date;
+    private $start;
+
+    /**
+     * @var \DateTime
+     */
+    private $end;
 
     /**
      * @var string
@@ -39,33 +44,56 @@ class DeviceLog
     }
 
     /**
-     * Set date
+     * Set start
      *
-     * @param \DateTime $date
-     * @return DeviceLog
+     * @param \DateTime $start
+     * @return TimeBlocks
      */
-    public function setDate($date)
+    public function setStart($start)
     {
-        $this->date = $date;
+        $this->start = $start;
 
         return $this;
     }
 
     /**
-     * Get date
+     * Get start
      *
      * @return \DateTime
      */
-    public function getDate()
+    public function getStart()
     {
-        return $this->date;
+        return $this->start;
+    }
+
+    /**
+     * Set end
+     *
+     * @param \DateTime $end
+     * @return TimeBlocks
+     */
+    public function setEnd($end)
+    {
+        $this->end = $end;
+
+        return $this;
+    }
+
+    /**
+     * Get end
+     *
+     * @return \DateTime
+     */
+    public function getEnd()
+    {
+        return $this->end;
     }
 
     /**
      * Set ip
      *
      * @param string $ip
-     * @return DeviceLog
+     * @return TimeBlocks
      */
     public function setIp($ip)
     {
@@ -88,7 +116,7 @@ class DeviceLog
      * Set device
      *
      * @param \App\Entity\Device $device
-     * @return DeviceLog
+     * @return TimeBlocks
      */
     public function setDevice(\App\Entity\Device $device = null)
     {

@@ -32,7 +32,7 @@ class FailureLimiter
      */
     public function successfull()
     {
-        if ($this->points > 0) {;
+        if ($this->points > 0) {
             $this->points--;
         }
         return $this->points;
