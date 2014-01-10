@@ -11,7 +11,7 @@ class { 'timezone':
 }
 
 class { 'elasticsearch':
-  version => '0.90.5'
+  version => '0.90.9'
 }
 
 $interface = "eth1"
