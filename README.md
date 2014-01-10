@@ -23,11 +23,13 @@ Requirements
 - Sudo/root rights for the scanner
 - SQLite 3.x
 - PDO SQLlite PHP extension
+- Curl PHP extension
+- ElasticSearch 0.90.x
 
 or if you want to use the Vagrant box:
 
-- VirtualBox 4.1 or 4.2
-- Vagrant 1.2
+- VirtualBox >= 4.1
+- Vagrant >= 1.2
 
 Installation using Vagrant
 -------------------------
@@ -59,8 +61,8 @@ I've created a Vagrant box that automatically starts scanning the network when y
     ```sudo tail -f /var/log/supervisor/*```
 
 
-Installation on your own server
-----------------------------
+Installation on your own server (or Raspberry Pi!)
+--------------------------------------------------
 
 1. Clone/download this repo and install the dependencies using composer
 
@@ -70,22 +72,23 @@ Installation on your own server
 
     ```apt-get install nmap```
 
-3. Copy config/app/config.yml-dist to config/app/config.yml
-4. If you want to lookup the vendor, get the API key from http://www.macvendorlookup.com/api. Fill in your e-mail address and choose JSON as output format.
-5. Change the network and interval of the scan to your needs.
-6. Let Doctrine create the database:
+3. Make sure you've ElasticSearch installed.
+4. Copy config/app/config.yml-dist to config/app/config.yml
+5. If you want to lookup the vendor, get the API key from http://www.macvendorlookup.com/api. Fill in your e-mail address and choose JSON as output format.
+6. Change the network and interval of the scan to your needs.
+7. Let Doctrine create the database:
 
     ```php vendor/bin/doctrine orm:schema-tool:create```
 
-7. Run the scanner (as root, possible with sudo):
+8. Run the scanner (as root, possible with sudo):
 
     ```php cli/command.php scanner```
 
-8. You can use the builtin webserver from PHP5.4 to run the webinterface:
+9. You can use the builtin webserver from PHP5.4 to run the webinterface:
 
     ``` ./run ```
 
-9. After the scanner has found the first results, you can see them at
+10. After the scanner has found the first results, you can see them at
 http://127.0.0.1:9999/graph
 
 
@@ -99,11 +102,11 @@ There's still a lot todo:
 - [/] Use ElasticSearch as storage
 - [/] Add unit tests
 - [ ] Make API to find out if the device is available atm
-- [X] Generate data/chart per device with available/offline times
+- [x] Generate data/chart per device with available/offline times
 - [ ] Show table with all devices
 - [/] Aggregate the results of devicelogs to timeblocks and cleanup devicelogs
 - [ ] Use Phing or Make to install
-- [X] Handle state when the're no devicelogs yet
-- [X] Add datepicker for timeline graph
+- [x] Handle state when the're no devicelogs yet
+- [x] Add datepicker for timeline graph
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/TrafeX/devicepresence/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
