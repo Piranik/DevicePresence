@@ -3,8 +3,19 @@ namespace App\Scan\Tool;
 
 use App\Scan\Tool\Nmap;
 
+/**
+ * NmapTest
+ *
+ * @coversDefaultClass \App\Scan\Tool\Nmap
+ * @see \PHPUnit_Framework_TestCase
+ * @author Tim de Pater <code@trafex.nl>
+ */
 class NmapTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @covers \App\Scan\Tool\Nmap
+     * @covers \App\Scan\Tool\Nmap\Mapper
+     */
     public function testPingANetwork()
     {
         $network = '192.168.150.0/24';
@@ -41,6 +52,10 @@ class NmapTest extends \PHPUnit_Framework_TestCase
         $this->assertNotNull($host->getVendor());
     }
 
+    /**
+     * @covers \App\Scan\Tool\Nmap
+     * @covers \App\Scan\Tool\Nmap\Mapper
+     */
     public function testPingInvalidNetwork()
     {
         $network = '192.168.150.0/24';
@@ -59,4 +74,3 @@ class NmapTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(0, $hosts);
     }
 }
-

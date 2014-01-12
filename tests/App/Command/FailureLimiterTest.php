@@ -1,9 +1,19 @@
 <?php
 namespace App\Command;
+
 use App\Command\FailureLimiter;
 
+/**
+ * FailureLimiterTest
+ *
+ * @see \PHPUnit_Framework_TestCase
+ * @author Tim de Pater <code@trafex.nl>
+ */
 class FailureLimiterTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @covers \App\Command\FailureLimiter
+     */
     public function testReachingLimit()
     {
         $limiter = new FailureLimiter();
@@ -22,6 +32,9 @@ class FailureLimiterTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($limiter->reachedLimit());
     }
 
+    /**
+     * @covers \App\Command\FailureLimiter
+     */
     public function testRestoringAfterLimit()
     {
         $limiter = new FailureLimiter();

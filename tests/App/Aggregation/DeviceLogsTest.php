@@ -5,8 +5,18 @@ use App\Aggregation\DeviceLogs as LogAggregator;
 use App\Entity\Device;
 use App\Entity\DeviceLog;
 
+/**
+ * DeviceLogsTest
+ *
+ * @coversDefaultClass \App\Aggregation\DeviceLogs
+ * @see \PHPUnit_Framework_TestCase
+ * @author Tim de Pater <code@trafex.nl>
+ */
 class DeviceLogsTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @covers ::aggregate
+     */
     public function testOfflineGapDifference()
     {
         $deviceLogs = array();
@@ -28,6 +38,9 @@ class DeviceLogsTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(2, $result['00:00:00:00:00:01']);
     }
 
+    /**
+     * @covers ::aggregate
+     */
     public function testTimeAggregation()
     {
         $deviceLogs = array();

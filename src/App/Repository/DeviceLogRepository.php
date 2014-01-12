@@ -12,24 +12,25 @@ use Doctrine\ORM\EntityRepository;
  */
 class DeviceLogRepository extends EntityRepository
 {
+    /**
+     * Find logs by day
+     *
+     * @param \DateTime $day
+     * @return array
+     */
     public function findByDay(\DateTime $day)
     {
         $query = $this->getEntityManager()->createQuery(
-            'select dl, d from \App\Entity\DeviceLog dl join dl.device d where dl.date between :datestart and :dateend order by d.id asc, dl.date asc'
+            'select dl, d from \App\Entity\DeviceLog dl
+            join dl.device d
+            where dl.date between :datestart and :dateend
+            order by d.id asc, dl.date asc'
         );
         $query->setParameters(
             array(
                 'datestart' => $day->format('Y-m-d'),
                 'dateend' => $day->add(new \DateInterval('P1D'))->format('Y-m-d'),
             )
-        );
-        return $query->getResult();
-    }
-
-    public function findGroupByDate()
-    {
-        $query = $this->getEntityManager()->createQuery(
-            'select dl from \App\Entity\DeviceLog dl group by start'
         );
         return $query->getResult();
     }

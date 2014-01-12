@@ -18,12 +18,8 @@
     </testsuites>
 
     <filter>
-        <blacklist>
-            <directory suffix=".php">./../tests</directory>
-            <directory suffix=".php">./../vendor</directory>
-        </blacklist>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./../src</directory>
+            <directory suffix=".php">./../src/App</directory>
         </whitelist>
     </filter>
 </phpunit>
