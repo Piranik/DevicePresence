@@ -12,6 +12,11 @@ use App\Scan\Tool\Nmap;
  */
 class NmapTest extends \PHPUnit_Framework_TestCase
 {
+    public function tearDown()
+    {
+        \Mockery::close();
+    }
+
     /**
      * @covers \App\Scan\Tool\Nmap
      * @covers \App\Scan\Tool\Nmap\Mapper
@@ -72,5 +77,32 @@ class NmapTest extends \PHPUnit_Framework_TestCase
         $nmap->setProgram($program);
         $hosts = $nmap->pingNetwork($network);
         $this->assertCount(0, $hosts);
+    }
+
+    /**
+     * @covers ::pingNetwork
+     * @covers ::getXpath
+     */
+    public function testFailOnInvalidXml()
+    {
+        $network = '192.168.150.0/24';
+        $program = \Mockery::mock('\App\Scan\Tool\Nmap\Program');
+        $program->shouldReceive('nmap')
+            ->withArgs(array($network, null))
+            ->andReturn(false);
+        $nmap = new Nmap();
+        $nmap->setProgram($program);
+
+        $this->setExpectedException('\RuntimeException');
+        $nmap->pingNetwork($network);
+    }
+
+    /**
+     * @covers ::getProgram
+     */
+    public function testLazyLoadedProgram()
+    {
+        $nmap = new Nmap();
+        $this->assertInstanceOf('\App\Scan\Tool\Nmap\Program', $nmap->getProgram());
     }
 }

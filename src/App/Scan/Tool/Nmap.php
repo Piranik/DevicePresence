@@ -51,9 +51,9 @@ class Nmap
     private function getXpath($xml)
     {
         $domDoc = new \DOMDocument();
-        $dom = $domDoc->loadXML($xml);
+        $dom = @$domDoc->loadXML($xml);
         if (false === $dom) {
-            new \RuntimeException(
+            throw new \RuntimeException(
                 sprintf('Couldn\'t load the XML from nmap: %s', $xml)
             );
         }

@@ -85,6 +85,15 @@ class DeviceLogsTest extends \PHPUnit_Framework_TestCase
         $this->assertNotNull($result['00:00:00:00:00:02'][0]['ip']);
     }
 
+    /**
+     * @covers ::aggregate
+     */
+    public function testNoDeviceLogs()
+    {
+        $aggregator = new LogAggregator();
+        $this->assertEquals(array(), $aggregator->aggregate(array(), 300));
+    }
+
     private function getDeviceLogForDate(\DateTime $date, Device $device)
     {
         $deviceLog = new DeviceLog();

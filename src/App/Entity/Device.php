@@ -38,7 +38,7 @@ class Device
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -54,14 +54,14 @@ class Device
     public function setMacaddress($macaddress)
     {
         $this->macaddress = $macaddress;
-    
+
         return $this;
     }
 
     /**
      * Get macaddress
      *
-     * @return string 
+     * @return string
      */
     public function getMacaddress()
     {
@@ -77,14 +77,14 @@ class Device
     public function setLastip($lastip)
     {
         $this->lastip = $lastip;
-    
+
         return $this;
     }
 
     /**
      * Get lastip
      *
-     * @return string 
+     * @return string
      */
     public function getLastip()
     {
@@ -100,14 +100,14 @@ class Device
     public function setFirstseen($firstseen)
     {
         $this->firstseen = $firstseen;
-    
+
         return $this;
     }
 
     /**
      * Get firstseen
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getFirstseen()
     {
@@ -123,14 +123,14 @@ class Device
     public function setLastseen($lastseen)
     {
         $this->lastseen = $lastseen;
-    
+
         return $this;
     }
 
     /**
      * Get lastseen
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getLastseen()
     {
@@ -146,14 +146,14 @@ class Device
     public function setUpdated($updated)
     {
         $this->updated = $updated;
-    
+
         return $this;
     }
 
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -174,14 +174,14 @@ class Device
     public function setVendor($vendor)
     {
         $this->vendor = $vendor;
-    
+
         return $this;
     }
 
     /**
      * Get vendor
      *
-     * @return string 
+     * @return string
      */
     public function getVendor()
     {
@@ -199,7 +199,7 @@ class Device
     {
         $this->devicelog = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Add devicelog
      *
@@ -209,7 +209,7 @@ class Device
     public function addDevicelog(\App\Entity\DeviceLog $devicelog)
     {
         $this->devicelog[] = $devicelog;
-    
+
         return $this;
     }
 
@@ -226,7 +226,7 @@ class Device
     /**
      * Get devicelog
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getDevicelog()
     {
