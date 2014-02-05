@@ -4,7 +4,8 @@ mod "java",
     :git => "git://github.com/example42/puppet-java.git"
 
 mod "git",
-    :git => "git://github.com/example42/puppet-git.git"
+    :git => "git://github.com/example42/puppet-git.git",
+    :ref => 'v2.0.15'
 
 mod "elasticsearch",
     :git => "git://github.com/example42/puppet-elasticsearch.git"

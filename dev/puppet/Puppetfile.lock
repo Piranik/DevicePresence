@@ -27,10 +27,10 @@ GIT
 
 GIT
   remote: git://github.com/example42/puppet-git.git
-  ref: master
-  sha: 6ce218ee57bc54bf976ae40f3a512bc90f01f39a
+  ref: v2.0.15
+  sha: db732879d3619ef33fb2c04ab6dd1626b399db21
   specs:
-    git (2.0.15)
+    git (2.0.14)
       example42/puppi (>= 2.0.0)
 
 GIT
