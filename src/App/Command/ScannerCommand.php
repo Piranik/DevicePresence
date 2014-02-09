@@ -60,6 +60,7 @@ class ScannerCommand extends Command
             try {
                 $this->scan($scanner, $output);
                 $this->aggregateToTimeBlocks($output);
+                $this->cleanupOldTimeBlocks($output);
                 $failureLimiter->successfull();
 
             } catch (RuntimeException $e) {
@@ -122,5 +123,25 @@ class ScannerCommand extends Command
             sprintf('Aggregated rows to %u timeblocks', $count)
         );
         return $count;
+    }
+
+    /**
+     * Remove the old devicelogs, those are already saved in ElasticSearch as
+     * timeblock.
+     *
+     * @param OutputInterface $output
+     * @return integer
+     */
+    private function cleanupOldTimeBlocks(OutputInterface $output)
+    {
+        $date = new \DateTime();
+        $date->sub(new \DateInterval('P1W'));
+        $removed = $this->entityManager->getRepository('\App\Entity\DeviceLog')->cleanupOlderThen($date);
+        if ($removed > 1) {
+            $output->writeLn(
+                sprintf('Cleaned up %u devicelogs older then %s', $removed, $date->format('Y-m-d'))
+            );
+        }
+        return $removed;
     }
 }

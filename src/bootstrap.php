@@ -9,7 +9,7 @@ $app->register(new Igorw\Silex\ConfigServiceProvider(
 $app->register(new KevinGH\Entities\EntitiesServiceProvider());
 $app->register(new Silex\Provider\TwigServiceProvider(), $app['twig.config']);
 
-$app['es'] = $app->share(function () use ($app) {
+$app['es'] = $app->share(function() use ($app) {
     return new \Elastica\Client($app['elasticsearch.options']);
 });
 

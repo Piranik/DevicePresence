@@ -34,4 +34,23 @@ class DeviceLogRepository extends EntityRepository
         );
         return $query->getResult();
     }
+
+    /**
+     * Cleanup devicelogs older then given date
+     *
+     * @param \DateTime $date
+     * @return int;
+     */
+    public function cleanupOlderThen(\DateTime $date)
+    {
+        $query = $this->getEntityManager()->createQuery(
+            'delete from \App\Entity\Devicelog dl where dl.date < :date'
+        );
+        $query->setParameters(
+            array(
+                'date' => $date->format('Y-m-d')
+            )
+        );
+        return $query->getResult();
+    }
 }
