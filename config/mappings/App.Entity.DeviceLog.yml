@@ -14,6 +14,7 @@ App\Entity\DeviceLog:
     date:
       type: datetime
       nullable: false
+      index: true
     ip:
       type: string
       length: 50
