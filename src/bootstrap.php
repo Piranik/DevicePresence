@@ -9,17 +9,27 @@ $app->register(new Igorw\Silex\ConfigServiceProvider(
 $app->register(new KevinGH\Entities\EntitiesServiceProvider());
 $app->register(new Silex\Provider\TwigServiceProvider(), $app['twig.config']);
 
-$app['elasticsearch'] = $app->share(function() use ($app) {
+// External
+$app['elasticsearch'] = $app->share(function () use ($app) {
     return new \Elastica\Client($app['elasticsearch.options']);
 });
 
-$app['repository.devicelogs'] = function ($app) {
-    return $app['em']->getRepository('\App\Entity\DeviceLog');
+// Aggregation
+$app['aggregation.timeblocks'] = function ($app) {
+    return new App\Aggregation\TimeBlocks(
+        $app['repository.devicelog'],
+        $app['aggregation.devicelogs'],
+        $app['elasticsearch']
+    );
+};
+$app['aggregation.devicelogs'] = function ($app) {
+    return new App\Aggregation\DeviceLogs;
 };
 
+// Command
 $app['command.scannercommand'] = function ($app) {
     return new \App\Command\ScannerCommand(
-        $app['repository.devicelogs'],
+        $app['repository.devicelog'],
         new App\Command\FailureLimiter(),
         $app['aggregation.timeblocks'],
         $app['scan'],
@@ -27,17 +37,17 @@ $app['command.scannercommand'] = function ($app) {
     );
 };
 
-$app['aggregation.timeblocks'] = function ($app) {
-    return new App\Aggregation\TimeBlocks(
-        $app['em'],
-        $app['elasticsearch']
-    );
-};
-
+// Lookup
 $app['lookup.macaddress'] = function ($app) {
     return new App\Lookup\MacAddress($app['scan.options']['macAddressApiKey']);
 };
 
+// Repository
+$app['repository.devicelog'] = function ($app) {
+    return $app['em']->getRepository('\App\Entity\DeviceLog');
+};
+
+// Scan
 $app['scan'] = function ($app) {
     return new App\Scan(
         $app['em'],
@@ -46,6 +56,5 @@ $app['scan'] = function ($app) {
         $app['scan.options']
     );
 };
-
 
 return $app;

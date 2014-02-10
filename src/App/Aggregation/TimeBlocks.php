@@ -1,18 +1,30 @@
 <?php
 namespace App\Aggregation;
 
-use Doctrine\ORM\EntityManager;
 use Elastica\Client;
 use App\Aggregation\DeviceLogs as DeviceLogAggregator;
+use App\Repository\DeviceLogRepository;
 
 class TimeBlocks
 {
-    private $em;
+    private $devicelogRepository;
+    private $aggregator;
     private $elasticsearch;
 
-    public function __construct(EntityManager $em, Client $elasticsearch)
-    {
-        $this->em = $em;
+    /**
+     * Constructor
+     *
+     * @param DeviceLogRepository $devicelogRepository
+     * @param DeviceLogAggregator $aggregator
+     * @param Client $elasticsearch
+     */
+    public function __construct(
+        DeviceLogRepository $devicelogRepository,
+        DeviceLogAggregator $aggregator,
+        Client $elasticsearch
+    ) {
+        $this->devicelogRepository = $devicelogRepository;
+        $this->aggregator = $aggregator;
         $this->elasticsearch = $elasticsearch;
     }
 
@@ -25,12 +37,9 @@ class TimeBlocks
      */
     public function aggregateToTimeBlocks($offlineGap)
     {
-        // @todo: Delete everything older then today
-
         $now = new \DateTime('now');
-        $deviceLogs = $this->em->getRepository('\App\Entity\DeviceLog')->findByDay($now);
-        $aggregator = new DeviceLogAggregator();
-        $rows = $aggregator->aggregate($deviceLogs, $offlineGap);
+        $deviceLogs = $this->devicelogRepository->findByDay($now);
+        $rows = $this->aggregator->aggregate($deviceLogs, $offlineGap);
         if (0 === count($rows)) {
             // Nothing to do
             return 0;
