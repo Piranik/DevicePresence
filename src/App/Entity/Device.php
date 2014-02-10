@@ -3,7 +3,6 @@ namespace App\Entity;
 
 class Device
 {
-
     /**
      * @var integer
      */
@@ -34,6 +33,18 @@ class Device
      */
     private $updated;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $devicelog;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->devicelog = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -186,18 +197,6 @@ class Device
     public function getVendor()
     {
         return $this->vendor;
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $devicelog;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->devicelog = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

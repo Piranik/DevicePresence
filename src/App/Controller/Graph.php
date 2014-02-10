@@ -40,7 +40,7 @@ class Graph implements ControllerProviderInterface
         $enddate = clone $date;
         $enddate->add(new \DateInterval('P1D'));
 
-        $repository = new TimeBlocksRepository($this->app['es']);
+        $repository = new TimeBlocksRepository($this->app['elasticsearch']);
         $result = $repository->fetchByRange($date, $enddate);
 
         return $this->app['twig']->render(

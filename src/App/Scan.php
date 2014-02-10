@@ -37,17 +37,47 @@ class Scan
     private $output;
 
     /**
+     * The tool to use for scanning
+     *
+     * @var Nmap
+     */
+    private $scanTool;
+
+    /**
+     * lookup
+     *
+     * @var mixed
+     */
+    private $lookup;
+
+    /**
      * Constructor
      *
      * @param EntityManager $em
-     * @param OutputInterface $output
+     * @param Nmap $scanTool
+     * @param MacAddress $lookup
      * @param array $config
      */
-    public function __construct(EntityManager $em, OutputInterface $output, array $config)
-    {
+    public function __construct(
+        EntityManager $em,
+        Nmap $scanTool,
+        MacAddress $lookup,
+        array $config
+    ) {
         $this->entityManager = $em;
-        $this->output = $output;
+        $this->scanTool = $scanTool;
+        $this->lookup = $lookup;
         $this->config = $config;
+    }
+
+    /**
+     * Set the output to write to
+     *
+     * @param OutputInterface $output
+     */
+    public function setOutput(OutputInterface $output)
+    {
+        $this->output = $output;
     }
 
     /**
@@ -57,9 +87,7 @@ class Scan
      */
     public function scanUsingNmap()
     {
-        $tool = new Nmap();
-        $lookup = new MacAddress($this->config['macAddressApiKey']);
-        $results = $tool->pingNetwork($this->config['network'], $this->config['interface']);
+        $results = $this->scanTool->pingNetwork($this->config['network'], $this->config['interface']);
         $this->output->writeLn(sprintf('Found %u online devices', count($results)));
 
         $updatedCnt = 0;
@@ -79,7 +107,7 @@ class Scan
                 $vendor = $result->getVendor();
                 if (null === $vendor) {
                     // Try to lookup
-                    $vendor = $lookup->getVendorForMacAddress($macAddress);
+                    $vendor = $this->lookup->getVendorForMacAddress($macAddress);
                 }
                 $device->setVendor($vendor);
                 $this->output->writeLn(sprintf('Found a new device: %s (%s)', $macAddress, $vendor));

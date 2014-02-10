@@ -7,7 +7,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Exception\RuntimeException;
 use App\Scan;
 use App\Aggregation\TimeBlocks;
-use Silex\Application;
+use App\Repository\DeviceLogRepository;
 
 /**
  * Start the scanner
@@ -18,13 +18,31 @@ use Silex\Application;
 class ScannerCommand extends Command
 {
     private $config;
-    private $entityManager;
-    private $elasticSearch;
+    private $deviceLogsRepository;
+    private $timeBlocks;
+    private $failureLimiter;
+    private $scanner;
 
-    public function __construct(Application $app, array $config)
-    {
-        $this->entityManager = $app['em'];
-        $this->elasticSearch = $app['es'];
+    /**
+     * Constructor
+     *
+     * @param DeviceLogRepository $deviceLogsRepository
+     * @param FailureLimiter $failureLimiter
+     * @param TimeBlocks $timeBlocks
+     * @param Scan $scanner
+     * @param array $config
+     */
+    public function __construct(
+        DeviceLogRepository $deviceLogsRepository,
+        FailureLimiter $failureLimiter,
+        TimeBlocks $timeBlocks,
+        Scan $scanner,
+        array $config
+    ) {
+        $this->deviceLogsRepository = $deviceLogsRepository;
+        $this->failureLimiter = $failureLimiter;
+        $this->timeBlocks = $timeBlocks;
+        $this->scanner = $scanner;
         $this->config = $config;
 
         parent::__construct();
@@ -52,16 +70,14 @@ class ScannerCommand extends Command
     {
         $output = new Output($output);
         $output->writeLn('Starting scanner..');
+        $this->scanner->setOutput($output);
 
-        $failureLimiter = new FailureLimiter();
-
-        $scanner = new Scan($this->entityManager, $output, $this->config);
         while (true) {
             try {
-                $this->scan($scanner, $output);
+                $this->scan($output);
                 $this->aggregateToTimeBlocks($output);
                 $this->cleanupOldTimeBlocks($output);
-                $failureLimiter->successfull();
+                $this->failureLimiter->successfull();
 
             } catch (RuntimeException $e) {
                 // Some timeouts on the process are acceptable
@@ -75,12 +91,12 @@ class ScannerCommand extends Command
                 $output->writeLn(
                     sprintf(
                         'Increased failure count to %s',
-                        $failureLimiter->failure()
+                        $this->failureLimiter->failure()
                     )
                 );
             }
 
-            if ($failureLimiter->reachedLimit()) {
+            if ($this->failureLimiter->reachedLimit()) {
                 throw new \RuntimeException('The process reached the maximum failure limit', 0, $e);
             }
             sleep($this->config['interval']);
@@ -90,13 +106,12 @@ class ScannerCommand extends Command
     /**
      * Execute the scanner
      *
-     * @param Scan $scanner
      * @param OutputInterface $output
      */
-    private function scan(Scan $scanner, OutputInterface $output)
+    private function scan(OutputInterface $output)
     {
         $time = microtime(true);
-        $devices = $scanner->scanUsingNmap();
+        $devices = $this->scanner->scanUsingNmap();
         $output->writeLn(
             sprintf(
                 '<info>Updated %u devices</info> (took: %01.2f secs, used memory: %01.2fMB)',
@@ -116,9 +131,7 @@ class ScannerCommand extends Command
     private function aggregateToTimeBlocks(OutputInterface $output)
     {
         // @todo: Looks likes this is causing a little memory leak
-        $timeblocks = new TimeBlocks($this->entityManager, $this->elasticSearch);
-        $count = $timeblocks->aggregateToTimeBlocks($this->config['offlineGap']);
-
+        $count = $this->timeBlocks->aggregateToTimeBlocks($this->config['offlineGap']);
         $output->writeLn(
             sprintf('Aggregated rows to %u timeblocks', $count)
         );
@@ -136,7 +149,7 @@ class ScannerCommand extends Command
     {
         $date = new \DateTime();
         $date->sub(new \DateInterval('P1W'));
-        $removed = $this->entityManager->getRepository('\App\Entity\DeviceLog')->cleanupOlderThen($date);
+        $removed = $this->deviceLogsRepository->cleanupOlderThen($date);
         if ($removed > 1) {
             $output->writeLn(
                 sprintf('Cleaned up %u devicelogs older then %s', $removed, $date->format('Y-m-d'))

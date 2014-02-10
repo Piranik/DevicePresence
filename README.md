@@ -103,10 +103,10 @@ There's still a lot todo:
 - [/] Add unit tests
 - [ ] Make API to find out if the device is available atm
 - [x] Generate data/chart per device with available/offline times
-- [ ] Show table with all devices
 - [/] Aggregate the results of devicelogs to timeblocks and cleanup devicelogs
 - [ ] Use Phing or Make to install
 - [x] Handle state when the're no devicelogs yet
 - [x] Add datepicker for timeline graph
+- [ ] Support Kismet as scanning tool
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/TrafeX/devicepresence/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
