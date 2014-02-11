@@ -8,6 +8,7 @@ use App\Command\ScannerCommand;
 /**
  * ScannerCommandTest
  *
+ * @coversDefaultClass \App\Command\ScannerCommand
  * @see \PHPUnit_Framework_TestCase
  * @author Tim de Pater <code@trafex.nl>
  */
@@ -18,6 +19,9 @@ class ScannerCommandTest extends \PHPUnit_Framework_TestCase
         \Mockery::close();
     }
 
+    /**
+     * @covers \App\Command\ScannerCommand
+     */
     public function testSuccessfulScan()
     {
         $deviceLogRepo = \Mockery::mock('App\Repository\DeviceLogRepository');
@@ -68,6 +72,9 @@ class ScannerCommandTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @covers \App\Command\ScannerCommand
+     */
     public function testFailureScan()
     {
         $deviceLogRepo = \Mockery::mock('App\Repository\DeviceLogRepository');

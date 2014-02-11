@@ -39,6 +39,11 @@ class Device
     private $devicelog;
 
     /**
+     * @var string
+     */
+    private $vendor;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -170,11 +175,6 @@ class Device
     {
         return $this->updated;
     }
-    /**
-     * @var string
-     */
-    private $vendor;
-
 
     /**
      * Set vendor
