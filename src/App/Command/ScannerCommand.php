@@ -4,6 +4,7 @@ namespace App\Command;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Process\Exception\RuntimeException;
 use App\Scan;
 use App\Aggregation\TimeBlocks;
@@ -57,7 +58,13 @@ class ScannerCommand extends Command
     {
         $this
             ->setName('scanner')
-            ->setDescription('Scan for devices');
+            ->setDescription('Scan for devices')
+            ->addOption(
+                'once',
+                null,
+                InputOption::VALUE_NONE,
+                'Run the scanner once'
+            );
     }
 
     /**
@@ -98,6 +105,11 @@ class ScannerCommand extends Command
 
             if ($this->failureLimiter->reachedLimit()) {
                 throw new \RuntimeException('The process reached the maximum failure limit', 0, $e);
+            }
+            if ($input->getOption('once')) {
+                // Only want to run this once, we're done now
+                $output->writeLn('--once was given as option, meaning the proces ends now.');
+                return;
             }
             sleep($this->config['interval']);
         }
@@ -150,7 +162,7 @@ class ScannerCommand extends Command
         $date = new \DateTime();
         $date->sub(new \DateInterval('P1W'));
         $removed = $this->deviceLogsRepository->cleanupOlderThen($date);
-        if ($removed > 1) {
+        if ($removed > 0) {
             $output->writeLn(
                 sprintf('Cleaned up %u devicelogs older then %s', $removed, $date->format('Y-m-d'))
             );
