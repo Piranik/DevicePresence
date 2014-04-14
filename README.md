@@ -18,13 +18,13 @@ This way it’s easy to know what kind of device it is.
 Requirements
 ------------
 
-- PHP 5.4
-- Nmap 6.0
+- PHP >= 5.4
+- Nmap >= 6.0
 - Sudo/root rights for the scanner
 - SQLite 3.x
 - PDO SQLlite PHP extension
 - Curl PHP extension
-- ElasticSearch 0.90.x
+- ElasticSearch >= 0.90
 
 or if you want to use the Vagrant box:
 
@@ -99,14 +99,13 @@ Currently, this app is being developed.
 There's still a lot todo:
 
 
-- [/] Use ElasticSearch as storage
-- [/] Add unit tests
+- [x] Use ElasticSearch as storage
+- [x] Add unit tests
 - [ ] Make API to find out if the device is available atm
 - [x] Generate data/chart per device with available/offline times
-- [/] Aggregate the results of devicelogs to timeblocks and cleanup devicelogs
+- [x] Aggregate the results of devicelogs to timeblocks and cleanup devicelogs
 - [ ] Use Phing or Make to install
 - [x] Handle state when the're no devicelogs yet
 - [x] Add datepicker for timeline graph
 - [ ] Support Kismet as scanning tool
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/TrafeX/devicepresence/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+- [ ] Add the ability to get a notification with Pushbullet when a device is discovered

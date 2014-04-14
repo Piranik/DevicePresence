@@ -1,4 +1,11 @@
 {% extends 'layout/html.twig' %}
+{% block navigation_content %}
+    <ul>
+        <li class="title"><a href="http://www.trafex.nl/device-presence">DevicePresence.</a></li>
+        <li><a href="/graph">Timeline</a></li>
+        <li class="active"><a href="/devices">Devices</a></li>
+    </ul>
+{% endblock %}
 {% block main_content %}
 <script type='text/javascript' src='https://www.google.com/jsapi'></script>
 <script type='text/javascript'>

@@ -5,19 +5,69 @@
         <style type="text/css">
             html, body {
                 width: 100%;
-                height: 100%;
+                height: 98%;
                 background: white;
-                margin:0;
-                padding:0;
+                margin: 0;
+                padding: 0;
+                font-family: sans-serif;
+                font-size: 90%;
             }
-
+            #navigation ul {
+                margin: 0px 0 10px 0;
+                padding: 0;
+                list-style-type: none;
+                height: 0px;
+            }
+            #navigation ul li {
+                float: left;
+                width: 80px;
+                height: 20px;
+                padding: 10px 0 10px;
+                margin: 0;
+                background-color: #eee;
+                font-weight: bold;
+                text-align: center;
+            }
+            #navigation ul li a {
+                text-decoration: none;
+                color: black;
+                vertical-align: middle;
+            }
+            #navigation ul a:hover, a:active {
+                color: red;
+                text-decoration: underline;
+            }
+            #navigation li.title {
+                width: 160px;
+                text-align: left;
+                padding-left: 15px;
+            }
+            #navigation li.title a {
+                text-shadow: 1px 1px #000;
+                color: red;
+                font-size: 120%;
+            }
+            #navigation {
+                height: 60px;
+                margin: 0;
+            }
             #timeline {
-                min-height: 93%;
+                min-height: 94%;
                 width: 99%;
+            }
+            #datepicker {
+                height: 100%;
+            }
+            #datepicker label[for=dateselect] {
+                margin: 40px 0 0 15px;
             }
         </style>
     </head>
     <body>
+        <div id="navigation">
+            {% block navigation_content %}
+            {% endblock %}
+        </div>
         {% block main_content %}
         {% endblock %}
     </body>
