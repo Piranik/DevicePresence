@@ -14,13 +14,14 @@ Vagrant.configure("2") do |config|
         ]
     end
 
-    config.vm.network :forwarded_port, guest: 9999, host: 9999
-    config.vm.network :public_network
+    config.vm.network "forwarded_port", guest: 9999, host: 9999
+    config.vm.network "public_network"
+    config.vm.network "private_network", ip: "192.168.56.251"
 
     config.vm.define :devicepresence do |project_config|
         project_config.vm.hostname = "devicepresence.local"
 
-        project_config.vm.synced_folder ".", "/vagrant"
+        project_config.vm.synced_folder ".", "/vagrant", type: 'nfs'
 
         project_config.vm.provision "shell", path: "dev/puppet/librarian-puppet.sh"
         project_config.vm.provision :puppet do |puppet|
