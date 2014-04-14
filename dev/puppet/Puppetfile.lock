@@ -12,7 +12,7 @@ FORGE
       puppetlabs/stdlib (>= 4.1.0)
     example42/monitor (2.0.1)
       example42/puppi (>= 2.0.0)
-    example42/puppi (2.1.7)
+    example42/puppi (2.1.9)
     puppetlabs/concat (1.1.0-rc1)
       puppetlabs/stdlib (>= 3.0.0)
     puppetlabs/stdlib (4.1.0)
@@ -20,7 +20,7 @@ FORGE
 GIT
   remote: git://github.com/example42/puppet-elasticsearch.git
   ref: master
-  sha: 065f1a6452604317deb5cbb833a78c927d52dc91
+  sha: 01cb04f248daf4a43a092346835ebd56e488a746
   specs:
     elasticsearch (2.0.14)
       example42/firewall (>= 2.0.0)
