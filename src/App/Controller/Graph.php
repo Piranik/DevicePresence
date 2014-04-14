@@ -4,7 +4,6 @@ namespace App\Controller;
 use Silex\Application;
 use Silex\ControllerProviderInterface;
 use App\Aggregation\DeviceLogs as DeviceLogAggregator;
-use App\Repository\TimeBlocksRepository;
 
 class Graph implements ControllerProviderInterface
 {
@@ -40,8 +39,7 @@ class Graph implements ControllerProviderInterface
         $enddate = clone $date;
         $enddate->add(new \DateInterval('P1D'));
 
-        $repository = new TimeBlocksRepository($this->app['elasticsearch']);
-        $result = $repository->fetchByRange($date, $enddate);
+        $result = $this->app['repository.timeblocks']->fetchByRange($date, $enddate);
 
         return $this->app['twig']->render(
             'graph/search.twig',
