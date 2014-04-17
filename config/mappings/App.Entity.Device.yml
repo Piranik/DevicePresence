@@ -1,5 +1,6 @@
 App\Entity\Device:
   type: entity
+  repositoryClass: App\Repository\DeviceRepository
   table: device
   fields:
     id:
@@ -12,9 +13,9 @@ App\Entity\Device:
       length: 17
       nullable: false
     vendor:
-        type: string
-        length: 255
-        nullable: true
+      type: string
+      length: 255
+      nullable: true
     lastip:
       type: string
       length: 50

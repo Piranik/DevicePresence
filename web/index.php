@@ -8,4 +8,5 @@ $app->get(
     }
 );
 $app->mount('/graph', new \App\Controller\Graph());
+$app->mount('/devices', new \App\Controller\Devices());
 $app->run();

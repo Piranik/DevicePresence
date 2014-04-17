@@ -46,6 +46,12 @@ $app['lookup.macaddress'] = function ($app) {
 $app['repository.devicelog'] = function ($app) {
     return $app['em']->getRepository('\App\Entity\DeviceLog');
 };
+$app['repository.timeblocks'] = function ($app) {
+    return new \App\Repository\TimeBlocksRepository($app['elasticsearch']);
+};
+$app['repository.device'] = function ($app) {
+    return $app['em']->getRepository('\App\Entity\Device');
+};
 
 // Scan
 $app['scan'] = function ($app) {

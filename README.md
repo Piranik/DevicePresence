@@ -1,7 +1,7 @@
 Device Presence
 ===============
 This app scans the network every x minutes and records every available device by it's MAC address.
-This information is stored in a database and plotted on a timeline.
+This information is stored in ElasticSearch and plotted on a timeline.
 
 This is especially interesting for mobile devices, it shows you when the devices was online, thus within the WiFi range.
 Devices are recognized by their MAC address, so even if you use a DHCP server with short lease times, it always knows which IP belongs to the device.
@@ -13,18 +13,18 @@ This way it’s easy to know what kind of device it is.
 [![Code Coverage](https://scrutinizer-ci.com/g/TrafeX/DevicePresence/badges/coverage.png?s=f7b20390ea47d3c3af3c42f0d72a668ea14fbed8)](https://scrutinizer-ci.com/g/TrafeX/DevicePresence/)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/TrafeX/DevicePresence/badges/quality-score.png?s=67482909a4c50187a3e61b9d8fd9b1872a300105)](https://scrutinizer-ci.com/g/TrafeX/DevicePresence/)
 
-![Device Presence](http://www.trafex.nl/wp-content/uploads/2013/08/devicepresence.png "Device Presence screenshot")
+![Device Presence](http://www.trafex.nl/wp-content/uploads/2014/04/Device-Presence-Google-Chrome_066.png "Device Presence screenshot")
 
 Requirements
 ------------
 
-- PHP 5.4
-- Nmap 6.0
+- PHP >= 5.4
+- Nmap >= 6.0
 - Sudo/root rights for the scanner
 - SQLite 3.x
 - PDO SQLlite PHP extension
 - Curl PHP extension
-- ElasticSearch 0.90.x
+- ElasticSearch >= 0.90
 
 or if you want to use the Vagrant box:
 
@@ -95,18 +95,19 @@ http://127.0.0.1:9999/graph
 W.I.P
 -----
 
-Currently, this app is being developed.
+I'm trying to keep the development going on this project.
 There's still a lot todo:
 
 
-- [/] Use ElasticSearch as storage
-- [/] Add unit tests
+- [x] Use ElasticSearch as storage
+- [x] Add unit tests
 - [ ] Make API to find out if the device is available atm
 - [x] Generate data/chart per device with available/offline times
-- [/] Aggregate the results of devicelogs to timeblocks and cleanup devicelogs
+- [x] Aggregate the results of devicelogs to timeblocks and cleanup devicelogs
 - [ ] Use Phing or Make to install
 - [x] Handle state when the're no devicelogs yet
 - [x] Add datepicker for timeline graph
 - [ ] Support Kismet as scanning tool
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/TrafeX/devicepresence/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+- [ ] Use Events to handle the scanner command
+- [ ] Use the elasticsearch puppet module
+- [ ] Add the ability to get a notification with Pushbullet when a device is discovered

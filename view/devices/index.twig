@@ -1,0 +1,36 @@
+{% extends 'layout/html.twig' %}
+{% block navigation_content %}
+    <ul>
+        <li class="title"><a href="http://www.trafex.nl/device-presence">DevicePresence.</a></li>
+        <li><a href="/graph">Timeline</a></li>
+        <li class="active"><a href="/devices">Devices</a></li>
+    </ul>
+{% endblock %}
+{% block main_content %}
+<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+<script type='text/javascript'>
+    google.load('visualization', '1', {packages:['table']});
+    google.setOnLoadCallback(drawTable);
+    function drawTable() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('number', 'Id');
+        data.addColumn('string', 'MAC Address');
+        data.addColumn('string', 'Vendor');
+        data.addColumn('string', 'Last IP');
+        data.addColumn('datetime', 'First seen');
+        data.addColumn('datetime', 'Last seen');
+        data.addColumn('datetime', 'Updated');
+        data.addRows([
+            {% autoescape false %}
+            {% for device in devices %}
+                [ {{device.id}}, '{{device.macaddress}}', '{{device.vendor}}', '{{device.lastip}}', new Date({{device.firstseen|date("Y, n, j, H, i, s") }}), new Date({{device.lastseen|date("Y, n, j, H, i, s") }}), new Date({{device.updated|date("Y, n, j, H, i, s") }}) ],
+            {% endfor %}
+            {% endautoescape %}
+        ]);
+
+        var table = new google.visualization.Table(document.getElementById('devices'));
+        table.draw(data, {showRowNumber: false});
+    }
+</script>
+<div id="devices"></div>
+{% endblock %}
