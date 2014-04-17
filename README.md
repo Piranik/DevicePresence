@@ -108,4 +108,6 @@ There's still a lot todo:
 - [x] Handle state when the're no devicelogs yet
 - [x] Add datepicker for timeline graph
 - [ ] Support Kismet as scanning tool
+- [ ] Use Events to handle the scanner command
+- [ ] Use the elasticsearch puppet module
 - [ ] Add the ability to get a notification with Pushbullet when a device is discovered
