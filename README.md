@@ -1,7 +1,7 @@
 Device Presence
 ===============
 This app scans the network every x minutes and records every available device by it's MAC address.
-This information is stored in a database and plotted on a timeline.
+This information is stored in ElasticSearch and plotted on a timeline.
 
 This is especially interesting for mobile devices, it shows you when the devices was online, thus within the WiFi range.
 Devices are recognized by their MAC address, so even if you use a DHCP server with short lease times, it always knows which IP belongs to the device.
@@ -13,7 +13,7 @@ This way it’s easy to know what kind of device it is.
 [![Code Coverage](https://scrutinizer-ci.com/g/TrafeX/DevicePresence/badges/coverage.png?s=f7b20390ea47d3c3af3c42f0d72a668ea14fbed8)](https://scrutinizer-ci.com/g/TrafeX/DevicePresence/)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/TrafeX/DevicePresence/badges/quality-score.png?s=67482909a4c50187a3e61b9d8fd9b1872a300105)](https://scrutinizer-ci.com/g/TrafeX/DevicePresence/)
 
-![Device Presence](http://www.trafex.nl/wp-content/uploads/2013/08/devicepresence.png "Device Presence screenshot")
+![Device Presence](http://www.trafex.nl/wp-content/uploads/2014/04/Device-Presence-Google-Chrome_066.png "Device Presence screenshot")
 
 Requirements
 ------------
@@ -95,7 +95,7 @@ http://127.0.0.1:9999/graph
 W.I.P
 -----
 
-Currently, this app is being developed.
+I'm trying to keep the development going on this project.
 There's still a lot todo:
 
 
