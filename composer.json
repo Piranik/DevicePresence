@@ -14,7 +14,7 @@
         "igorw/config-service-provider": "v1.2.1",
         "symfony/yaml": "~2.3",
         "twig/twig": ">=1.8,<2.0-dev",
-        "ruflin/elastica" : "~0.90"
+        "ruflin/elastica" : "~1.4"
     },
     "require-dev": {
         "phpunit/phpunit": "~3.7",

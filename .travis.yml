@@ -10,6 +10,7 @@ matrix:
         - php: hhvm
         - php: 7.0
 
+sudo: false
 before_install:
 - composer install --dev
 - cp config/app/config.yml-dist config/app/config.yml

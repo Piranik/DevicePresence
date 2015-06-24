@@ -27,19 +27,19 @@ file { 'scanner.conf':
   source => "/vagrant/dev/puppet/files/scanner.conf",
   path => "/etc/supervisor/conf.d/scanner.conf",
   notify => Service['supervisor'],
-  require => Exec['create-db'],
+  require => [Exec['create-db'], Class['elasticsearch'], Package['nmap']],
 }
 
 file { 'web.conf':
   source => "/vagrant/dev/puppet/files/web.conf",
   path => "/etc/supervisor/conf.d/web.conf",
   notify => Service['supervisor'],
-  require => Exec['create-db'],
+  require => [Exec['create-db'], Class['elasticsearch']],
 }
 
 service { 'supervisor':
   ensure => 'running',
-  require => Exec['create-db'],
+  require => [Exec['create-db'], Package['supervisor']],
 }
 
 exec { 'create-db':

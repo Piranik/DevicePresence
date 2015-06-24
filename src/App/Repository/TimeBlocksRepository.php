@@ -56,7 +56,7 @@ class TimeBlocksRepository
 
         // Create the actual search object with some data.
         $elasticaQuery = new Query();
-        $elasticaQuery->setFilter($rangeFilter);
+        $elasticaQuery->setPostFilter($rangeFilter);
         $elasticaQuery->setSort(array('device' => array('order' => 'asc')));
         $elasticaQuery->setLimit(10000);
         $elasticaQuery->addFacet($dateFacet);

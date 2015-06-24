@@ -1,32 +1,14 @@
 FORGE
   remote: http://forge.puppetlabs.com
   specs:
-    example42/firewall (2.1.3)
-      example42/iptables (>= 2.0.0)
-      example42/puppi (>= 2.0.0)
-    example42/git (2.0.15)
-      example42/puppi (>= 2.0.0)
-    example42/iptables (2.1.3)
-      example42/puppi (>= 2.0.0)
-      puppetlabs/concat (>= 1.0.0)
-      puppetlabs/stdlib (>= 4.1.0)
-    example42/monitor (2.0.1)
-      example42/puppi (>= 2.0.0)
-    example42/puppi (2.1.9)
-    puppetlabs/concat (1.1.0-rc1)
-      puppetlabs/stdlib (>= 3.0.0)
-    puppetlabs/stdlib (4.1.0)
+    example42/puppi (2.1.11)
 
 GIT
   remote: git://github.com/example42/puppet-elasticsearch.git
   ref: master
-  sha: 01cb04f248daf4a43a092346835ebd56e488a746
+  sha: 59277afc0e648210bd71f4fa137e266324d61e1a
   specs:
-    elasticsearch (2.0.14)
-      example42/firewall (>= 2.0.0)
-      example42/git (>= 2.0.0)
-      example42/monitor (>= 2.0.0)
-      example42/puppi (>= 2.0.0)
+    elasticsearch (0.0.1)
 
 GIT
   remote: git://github.com/example42/puppet-git.git
@@ -39,15 +21,14 @@ GIT
 GIT
   remote: git://github.com/example42/puppet-java.git
   ref: master
-  sha: 85e76cba0f753364802a642d658a6b5003874e1a
+  sha: c7aa310aaefe9dc793444511afdf0fe5c3ee528f
   specs:
-    java (2.0.3)
-      example42/puppi (>= 2.0.0)
+    java (0.0.1)
 
 GIT
   remote: git://github.com/example42/puppet-timezone.git
   ref: master
-  sha: a4f0217269a72f8e8db07d740d06a424fe956344
+  sha: 4c9f285c30e40fa219a9e03b400079aac88db075
   specs:
     timezone (2.0.10)
       example42/puppi (>= 2.0.0)

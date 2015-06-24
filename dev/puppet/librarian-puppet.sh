@@ -38,10 +38,16 @@ if [ ! -d "$PUPPET_DIR" ]; then
 fi
 
 if [ "$(gem search -i librarian-puppet)" = "false" ]; then
-  gem install librarian-puppet
 
-  rm -rf $PUPPET_DIR/modules
+  apt-get -q -y install ruby-dev
+  gem install librarian-puppet -v 1.0.2 --no-user-install
+
+
+  rm -rf $PUPPET_DIR/modules/*/
+
+  librarian-puppet config tmp /tmp --local
   cd $PUPPET_DIR && librarian-puppet install
 else
+  librarian-puppet config tmp /tmp --local
   cd $PUPPET_DIR && librarian-puppet update
 fi
