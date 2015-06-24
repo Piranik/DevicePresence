@@ -23,7 +23,7 @@ scan.options:
 
 # Elasticsearch options
 elasticsearch.options:
-    host: "127.0.0.1"
+    host: ~
     port: 9200
 
 # Database Configuration

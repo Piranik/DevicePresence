@@ -11,7 +11,18 @@ $app->register(new Silex\Provider\TwigServiceProvider(), $app['twig.config']);
 
 // External
 $app['elasticsearch'] = $app->share(function () use ($app) {
-    return new \Elastica\Client($app['elasticsearch.options']);
+    if (!isset($app['elasticsearch.options.host'])) {
+        // Docker
+        $host = $_ENV['ELASTICSEARCH_PORT_9200_TCP_ADDR'];
+    } else {
+        $host = $app['elasticsearch.options.host'];
+    }
+    return new \Elastica\Client(
+        array(
+            'host' => $host,
+            'port' => $app['elasticsearch.options']['port']
+        )
+    );
 });
 
 // Aggregation

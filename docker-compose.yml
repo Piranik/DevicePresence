@@ -1,0 +1,26 @@
+web:
+    build: .
+    dockerfile: Dockerfile-web
+    command: php -d date.timezone='Europe/Amsterdam' -S 0.0.0.0:9991 -t /src/web
+    ports:
+        - "9991:9991"
+    volumes:
+        - .:src/
+    links:
+        - elasticsearch
+
+scanner:
+    build: .
+    dockerfile: Dockerfile-scanner
+    command: php -d date.timezone='Europe/Amsterdam' /src/cli/command.php scanner
+    net: "host"
+    volumes:
+        - .:src/
+    links:
+        - elasticsearch
+
+elasticsearch:
+    image: elasticsearch
+    ports:
+        - "9200"
+        - "9300"
