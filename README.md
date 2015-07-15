@@ -31,8 +31,19 @@ or if you want to use the Vagrant box:
 - VirtualBox >= 4.1
 - Vagrant >= 1.2
 
-Installation using Vagrant
+Installation using Docker
 -------------------------
+
+1. Clone/download this repo and install the dependencies using composer
+
+    ```php composer.phar install```
+
+2. Start the Docker containers with Docker Compose
+
+    ```docker-compose up```
+
+Installation using Vagrant
+--------------------------
 I've created a Vagrant box that automatically starts scanning the network when you start it.
 
 1. Clone/download this repo and install the dependencies using composer
@@ -84,7 +95,7 @@ Installation on your own server (or Raspberry Pi!)
 
     ```php cli/command.php scanner```
 
-9. You can use the builtin webserver from PHP5.4 to run the webinterface:
+9. You can use the builtin webserver from PHP5.5 to run the webinterface:
 
     ``` ./run ```
 

@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use Silex\Application;
 use Silex\ControllerProviderInterface;
-use App\Aggregation\DeviceLogs as DeviceLogAggregator;
 
 class Graph implements ControllerProviderInterface
 {
@@ -18,6 +17,7 @@ class Graph implements ControllerProviderInterface
      * Define the routes this controller uses
      *
      * @param Application $app
+     * @return \Silex\ControllerCollection
      */
     public function connect(Application $app)
     {

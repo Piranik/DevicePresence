@@ -4,6 +4,7 @@ namespace App\Aggregation;
 use Elastica\Client;
 use App\Aggregation\DeviceLogs as DeviceLogAggregator;
 use App\Repository\DeviceLogRepository;
+use Elastica\Document;
 
 class TimeBlocks
 {
@@ -55,7 +56,7 @@ class TimeBlocks
                 $log['start'] = $log['start']->format('c');
                 $log['end'] = $log['end']->format('c');
                 // @todo: Check if exists
-                $documents[] = new \Elastica\Document(
+                $documents[] = new Document(
                     md5($log['device'] . $log['start']),
                     $log
                 );

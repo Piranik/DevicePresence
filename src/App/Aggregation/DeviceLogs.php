@@ -1,5 +1,6 @@
 <?php
 namespace App\Aggregation;
+use App\Entity\DeviceLog;
 
 /**
  * DeviceLog Aggregator
@@ -26,6 +27,7 @@ class DeviceLogs
         $lastDate = array();
         $curDevice = null;
         $i = null;
+        /** @var DeviceLog $deviceLog */
         foreach ($deviceLogs as $deviceLog) {
             if ($curDevice !== $deviceLog->getDevice()->getMacAddress()) {
                 // New device found

@@ -6,8 +6,12 @@ RUN apt-get update && \
     apt-get install -y nmap libsqlite3-dev && \
     docker-php-ext-install pdo_sqlite
 
+
 # Provides cached layer for composer packages
 
 # Define working directory
 WORKDIR /src
 ADD . /src
+
+# Create database if not exists
+#RUN test -e device.db || php vendor/bin/doctrine orm:schema-tool:create
